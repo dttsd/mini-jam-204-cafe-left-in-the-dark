@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://dx73wx5kjcyy8"]
+
+[ext_resource type="PackedScene" uid="uid://ty4dgymwidvn" path="res://player_character.tscn" id="1_0f027"]
+[ext_resource type="Script" uid="uid://p6i5h5pl6ktp" path="res://background.gd" id="1_2c62f"]
+[ext_resource type="Texture2D" uid="uid://deq766i1udm3f" path="res://assets/background/bkg_bottom_foliage.png" id="2_hq1ik"]
+[ext_resource type="Texture2D" uid="uid://c6rv6qeypokrj" path="res://assets/background/bkg_bottom_trees.png" id="3_nfk4m"]
+[ext_resource type="Texture2D" uid="uid://dmklrsis6k7v1" path="res://assets/background/bkg_road.png" id="4_66tet"]
+[ext_resource type="Texture2D" uid="uid://cf0axp8otstcv" path="res://assets/background/bkg_top_foliage.png" id="5_7ycvg"]
+[ext_resource type="Texture2D" uid="uid://c663y7xxglot4" path="res://assets/background/bkg_top_trees.png" id="6_wr18j"]
+[ext_resource type="Texture2D" uid="uid://bfkv66c5ddqpv" path="res://assets/van.png" id="8_7ycvg"]
+[ext_resource type="Shader" uid="uid://6x0ueofoqah3" path="res://crt_vhs.gdshader" id="9_wr18j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qwutr"]
+shader = ExtResource("9_wr18j")
+shader_parameter/brightness = 1.02
+shader_parameter/contrast = 1.08
+shader_parameter/saturation = 1.1
+shader_parameter/gamma = 1.05
+shader_parameter/curvature = 0.0230000010925
+shader_parameter/corner_soften = 0.06
+shader_parameter/vignette = 0.38
+shader_parameter/scanline_strength = 0.95
+shader_parameter/scanline_density = 1.15
+shader_parameter/interlace_strength = 0.2
+shader_parameter/mask_strength = 0.22
+shader_parameter/mask_scale = 1.0
+shader_parameter/chroma_offset_px = 1.6
+shader_parameter/luma_smear_px = 2.2
+shader_parameter/jitter_px = 1.8
+shader_parameter/wobble_px = 1.5
+shader_parameter/tape_noise = 0.22
+shader_parameter/tape_lines = 0.35
+shader_parameter/roll_speed = 0.1
+shader_parameter/roll_strength = 0.15
+shader_parameter/glow_strength = 0.25
+shader_parameter/glow_threshold = 0.65
+
+[node name="MainScene" type="Node2D" unique_id=981094626]
+
+[node name="Background" type="Node2D" parent="." unique_id=61237509]
+texture_filter = 1
+script = ExtResource("1_2c62f")
+velocity = -30.0
+
+[node name="MainRoad" type="Parallax2D" parent="Background" unique_id=983628048]
+repeat_size = Vector2(720, 0)
+
+[node name="BkgRoad" type="Sprite2D" parent="Background/MainRoad" unique_id=43170530]
+scale = Vector2(2, 2)
+texture = ExtResource("4_66tet")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="TopTrees" type="Parallax2D" parent="Background" unique_id=792922458]
+repeat_size = Vector2(720, 0)
+
+[node name="BkgTopFoliage" type="Sprite2D" parent="Background/TopTrees" unique_id=1236505869]
+position = Vector2(0, -56)
+scale = Vector2(2, 2)
+texture = ExtResource("5_7ycvg")
+centered = false
+
+[node name="BkgTopTrees" type="Sprite2D" parent="Background/TopTrees" unique_id=1297226098]
+position = Vector2(0, -32)
+scale = Vector2(2, 2)
+texture = ExtResource("6_wr18j")
+centered = false
+
+[node name="BottomFoliage" type="Parallax2D" parent="Background" unique_id=1134689429]
+scroll_scale = Vector2(1.1, 1)
+repeat_size = Vector2(720, 0)
+
+[node name="BkgBottomFoliage" type="Sprite2D" parent="Background/BottomFoliage" unique_id=247592134]
+position = Vector2(0, 21)
+scale = Vector2(2, 2)
+texture = ExtResource("2_hq1ik")
+centered = false
+
+[node name="BottomTrees" type="Parallax2D" parent="Background" unique_id=1592900139]
+z_index = 1
+scroll_scale = Vector2(1.2, 1.2)
+repeat_size = Vector2(720, 0)
+
+[node name="BkgTreeBlackout" type="ColorRect" parent="Background/BottomTrees" unique_id=564682712]
+offset_top = 361.0
+offset_right = 40.0
+offset_bottom = 470.31372
+scale = Vector2(18.04, 2.04)
+color = Color(0.3254902, 0, 0, 1)
+
+[node name="BkgBottomTrees" type="Sprite2D" parent="Background/BottomTrees" unique_id=1557729734]
+position = Vector2(0, 17)
+scale = Vector2(2, 2)
+texture = ExtResource("3_nfk4m")
+centered = false
+
+[node name="PlayerCharacter" parent="." unique_id=510971326 instance=ExtResource("1_0f027")]
+position = Vector2(161, 178)
+speed = 400
+
+[node name="Camera2D" type="Camera2D" parent="PlayerCharacter" unique_id=341559836]
+scale = Vector2(0.5, 0.5)
+limit_left = 0
+limit_top = 0
+limit_bottom = 600
+position_smoothing_enabled = true
+
+[node name="Van" type="Sprite2D" parent="." unique_id=557733051]
+texture_filter = 1
+position = Vector2(329, 181)
+scale = Vector2(2, 2)
+texture = ExtResource("8_7ycvg")
+
+[node name="VHS_EFFECT_LAYER" type="CanvasLayer" parent="." unique_id=317191588]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="VHS_EFFECT_LAYER" unique_id=1226447102]
+material = SubResource("ShaderMaterial_qwutr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

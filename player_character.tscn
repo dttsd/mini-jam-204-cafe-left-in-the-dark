@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://ty4dgymwidvn"]
+
+[ext_resource type="Script" uid="uid://crll7i13ld2iv" path="res://scripts/player_character.gd" id="1_02ohv"]
+[ext_resource type="Texture2D" uid="uid://bo2jex2r0a6rn" path="res://assets/player/Player-1.png" id="2_0hvvw"]
+[ext_resource type="Texture2D" uid="uid://b70oasqy3obcn" path="res://assets/player/Player-2.png" id="3_6qc1w"]
+[ext_resource type="Texture2D" uid="uid://1yu8l2bbpk" path="res://assets/player/Player-3.png" id="4_uuvki"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04jrr"]
+size = Vector2(11, 17)
+
+[sub_resource type="Gradient" id="Gradient_02ohv"]
+offsets = PackedFloat32Array(0.2952381, 0.7, 0.9190476, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1, 1, 0.6901961, 0.14117648, 1, 1, 1, 0.23921569, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5up26"]
+gradient = SubResource("Gradient_02ohv")
+width = 14
+height = 14
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4yf86"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0hvvw")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6qc1w")
+}, {
+"duration": 0.5,
+"texture": ExtResource("2_0hvvw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uuvki")
+}, {
+"duration": 0.5,
+"texture": ExtResource("2_0hvvw")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[node name="PlayerCharacter" type="CharacterBody2D" unique_id=510971326]
+scale = Vector2(2, 2)
+motion_mode = 1
+script = ExtResource("1_02ohv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1782037744]
+shape = SubResource("RectangleShape2D_04jrr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=441646814]
+visible = false
+texture_filter = 1
+texture = SubResource("GradientTexture2D_5up26")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=83338523]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_4yf86")
+animation = &"Walk"
+autoplay = "Idle"
+frame_progress = 0.5593479
