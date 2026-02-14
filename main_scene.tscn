@@ -128,17 +128,27 @@ position = Vector2(298, 172)
 script = ExtResource("9_qwutr")
 
 [node name="RadiusLight" type="PointLight2D" parent="World/Van" unique_id=1397404702]
+range_item_cull_mask = 3
 texture = SubResource("GradientTexture2D_qwutr")
 texture_scale = 0.9
 
 [node name="HeadLights" type="PointLight2D" parent="World/Van" unique_id=1626541998]
 position = Vector2(35, 8)
 rotation = 0.7853982
+shadow_enabled = true
+texture = ExtResource("10_qwutr")
+
+[node name="HeadLightsPost" type="PointLight2D" parent="World/Van" unique_id=1195555661]
+position = Vector2(35, 8)
+rotation = 0.7853982
+range_item_cull_mask = 2
+shadow_item_cull_mask = 2
 texture = ExtResource("10_qwutr")
 
 [node name="LightAreaChecker" type="Area2D" parent="World/Van" unique_id=850361262]
 
 [node name="CollisionCircle2D" type="CollisionShape2D" parent="World/Van/LightAreaChecker" unique_id=1085046366]
+visible = false
 shape = SubResource("CircleShape2D_qwutr")
 
 [node name="Timer" type="Timer" parent="World/Van" unique_id=1608508578]
@@ -146,7 +156,7 @@ autostart = true
 
 [node name="PlayerCharacter" parent="World" unique_id=510971326 node_paths=PackedStringArray("light_area") instance=ExtResource("1_0f027")]
 y_sort_enabled = true
-position = Vector2(379, 209)
+position = Vector2(381, 204)
 light_area = NodePath("../Van/LightAreaChecker")
 
 [node name="Camera2D" type="Camera2D" parent="World/PlayerCharacter" unique_id=341559836]

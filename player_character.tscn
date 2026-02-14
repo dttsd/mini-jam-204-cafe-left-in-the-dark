@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://bxilhvk4ptw67" path="res://assets/player/PlayerWalk-3.png" id="7_bgme8"]
 [ext_resource type="Texture2D" uid="uid://c38ovgt3qideo" path="res://assets/player/PlayerWalk-2.png" id="8_g1g7m"]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4yf86"]
+polygon = PackedVector2Array(1.5, 0, 0, 0, 0, -1, -1, -1, -1, -4, -1, -7, 1.5, -7)
+
 [sub_resource type="Gradient" id="Gradient_02ohv"]
 offsets = PackedFloat32Array(0.2952381, 0.7, 0.9190476, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1, 1, 0.6901961, 0.14117648, 1, 1, 1, 0.23921569, 0)
@@ -70,12 +73,16 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_04jrr"]
-size = Vector2(11, 2)
+size = Vector2(10.5, 2)
 
 [node name="PlayerCharacter" type="CharacterBody2D" unique_id=510971326]
 scale = Vector2(2, 2)
 motion_mode = 1
 script = ExtResource("1_02ohv")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1163609314]
+position = Vector2(-0.5, 0)
+occluder = SubResource("OccluderPolygon2D_4yf86")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=441646814]
 visible = false
@@ -83,13 +90,17 @@ texture_filter = 1
 texture = SubResource("GradientTexture2D_5up26")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=83338523]
+light_mask = 2
 texture_filter = 1
-position = Vector2(0, -8.5)
+position = Vector2(0.5, -8.5)
 sprite_frames = SubResource("SpriteFrames_4yf86")
 animation = &"Walk"
 autoplay = "Idle"
-frame_progress = 0.47324437
+frame_progress = 0.23271132
+offset = Vector2(-0.5, 0)
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1782037744]
-position = Vector2(0, -1)
+visible = false
+position = Vector2(-0.25, -1)
 shape = SubResource("RectangleShape2D_04jrr")
