@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2hcltae8ruth"
-path="res://.godot/imported/Bago'beans.png-7a2c8bb6990d6280928ec76fdd41db9d.ctex"
+uid="uid://dusbglsitf3v2"
+path="res://.godot/imported/fuel_can.png-d3515f64d85496598fa2fef7480e80d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/Bago'beans.png"
-dest_files=["res://.godot/imported/Bago'beans.png-7a2c8bb6990d6280928ec76fdd41db9d.ctex"]
+source_file="res://assets/items/fuel_can.png"
+dest_files=["res://.godot/imported/fuel_can.png-d3515f64d85496598fa2fef7480e80d3.ctex"]
 
 [params]
 

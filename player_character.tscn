@@ -73,11 +73,12 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_04jrr"]
-size = Vector2(10.5, 2)
+size = Vector2(10.5, 0.5)
 
 [node name="PlayerCharacter" type="CharacterBody2D" unique_id=510971326]
 scale = Vector2(2, 2)
 motion_mode = 1
+wall_min_slide_angle = 0.17453292
 script = ExtResource("1_02ohv")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1163609314]
@@ -92,15 +93,16 @@ texture = SubResource("GradientTexture2D_5up26")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=83338523]
 light_mask = 2
 texture_filter = 1
-position = Vector2(0.5, -8.5)
+position = Vector2(0, -8.5)
 sprite_frames = SubResource("SpriteFrames_4yf86")
 animation = &"Walk"
 autoplay = "Idle"
-frame_progress = 0.23271132
+frame_progress = 0.88866955
 offset = Vector2(-0.5, 0)
-flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1782037744]
-visible = false
-position = Vector2(-0.25, -1)
+position = Vector2(-0.25, -0.25)
 shape = SubResource("RectangleShape2D_04jrr")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=780167961]
+position = Vector2(0, -11.5)

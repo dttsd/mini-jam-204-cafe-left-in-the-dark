@@ -3,44 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://drp4nmepkx0mb" path="res://assets/van/van_wheels.png" id="1_8opdr"]
 [ext_resource type="Texture2D" uid="uid://dwgdygncv86xc" path="res://assets/van/van_body.png" id="2_lvfqf"]
 [ext_resource type="Script" uid="uid://cprkwifs1loug" path="res://van_front_push_out_of_the_wayer.gd" id="3_lvfqf"]
-[ext_resource type="Texture2D" uid="uid://c5vatcb43dow4" path="res://assets/items/singular_bean.png" id="4_ubcua"]
-[ext_resource type="AudioStream" uid="uid://c12vwxysn4hnv" path="res://assets/sfx/loop-car-engine-sound-mor-hbrntvta.wav" id="5_1ax43"]
-
-[sub_resource type="Gradient" id="Gradient_lvfqf"]
-offsets = PackedFloat32Array(0, 0.99159664)
-colors = PackedColorArray(0.40392157, 0.40392157, 0.40392157, 0.76862746, 0.40392157, 0.40392157, 0.40392157, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ubcua"]
-gradient = SubResource("Gradient_lvfqf")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
-
-[sub_resource type="Curve" id="Curve_1ax43"]
-_data = [Vector2(0, 1), 0.0, -1.1507165, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_0b1ke"]
-curve = SubResource("Curve_1ax43")
-
-[sub_resource type="Curve" id="Curve_lvfqf"]
-_data = [Vector2(0, 0), 0.0, 3.8980126, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_ubcua"]
-curve = SubResource("Curve_lvfqf")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ss4g1"]
-particle_flag_disable_z = true
-direction = Vector3(-0.5, -1, 0)
-spread = 0.0
-initial_velocity_min = 31.01
-initial_velocity_max = 31.01
-gravity = Vector3(0, 0, 0)
-damping_min = 14.695001
-damping_max = 14.695001
-scale_curve = SubResource("CurveTexture_ubcua")
-alpha_curve = SubResource("CurveTexture_0b1ke")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6cji5"]
 size = Vector2(96, 49)
@@ -50,7 +12,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VanBody:position")
+tracks/0/path = NodePath("Van:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -67,7 +29,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VanBody:position")
+tracks/0/path = NodePath("Van:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -94,28 +56,11 @@ position = Vector2(0, 4)
 scale = Vector2(2, 2)
 texture = ExtResource("1_8opdr")
 
-[node name="VanBody" type="Sprite2D" parent="." unique_id=1760046270]
+[node name="Van" type="Sprite2D" parent="." unique_id=1760046270]
 texture_filter = 1
 position = Vector2(0, 4)
 scale = Vector2(2, 2)
 texture = ExtResource("2_lvfqf")
-
-[node name="Exhaust" type="Polygon2D" parent="VanBody" unique_id=1820772691]
-position = Vector2(6.5, -0.5)
-color = Color(0.2051174, 0.20511746, 0.20511737, 1)
-polygon = PackedVector2Array(-34, 13, -31, 13, -31, 15.5, -34, 15.5)
-
-[node name="SmokeParticles" type="GPUParticles2D" parent="VanBody/Exhaust" unique_id=377599443]
-position = Vector2(-34, 14)
-texture = SubResource("GradientTexture2D_ubcua")
-lifetime = 2.0599999999999996
-speed_scale = 0.25
-process_material = SubResource("ParticleProcessMaterial_ss4g1")
-
-[node name="SingularBean" type="Sprite2D" parent="VanBody" unique_id=2075831256]
-texture_filter = 1
-position = Vector2(-6.5, -13)
-texture = ExtResource("4_ubcua")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=541239841]
 position = Vector2(-1, 23.5)
@@ -135,12 +80,5 @@ script = ExtResource("3_lvfqf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VanFrontPushOutOfTheWayer" unique_id=1268736988]
 position = Vector2(51, 23.5)
 shape = SubResource("RectangleShape2D_8opdr")
-
-[node name="LoopCarEngineSoundMorHbrntvta" type="AudioStreamPlayer2D" parent="." unique_id=1317596876]
-position = Vector2(32, 22)
-stream = ExtResource("5_1ax43")
-volume_db = -9.706
-autoplay = true
-panning_strength = 5.0
 
 [connection signal="body_entered" from="VanFrontPushOutOfTheWayer" to="VanFrontPushOutOfTheWayer" method="_on_body_entered"]

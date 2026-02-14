@@ -54,4 +54,4 @@ func handle_light_damage(delta: float):
 	else:
 		player_health += darkness_damage * delta * 4
 		
-	print(str(player_health))
+	#print(str(player_health))

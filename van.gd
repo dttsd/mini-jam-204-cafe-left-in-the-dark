@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	var rand_amt: float = randf()
-	print("headlight energy", str(rand_amt))
+	#print("headlight energy", str(rand_amt))
 	headLights.energy = rand_amt
 	timer.start(rand_amt)
 	pass # Replace with function body.
@@ -31,9 +31,9 @@ func _on_player_character_health_changed(health: float) -> void:
 	const max_light_scale = 0.9
 	
 	var light_mapped = pow(health/100, 2)
-	print(health, " ", light_mapped)
+	#print(health, " ", light_mapped)
 	#radiusLight.texture_scale = clamp(remap(health,0,100,0, max_light_scale), 0, 1)
-	radiusLight.texture_scale = clamp(light_mapped, 0, 1)
+	radiusLight.texture_scale = clamp(light_mapped, 0.2, 1)
 	
 	headLights.enabled = (health >= 100)
 	

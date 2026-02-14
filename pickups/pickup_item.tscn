@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b4ptk4jlrdqvy"]
+
+[ext_resource type="Texture2D" uid="uid://dusbglsitf3v2" path="res://assets/items/fuel_can.png" id="1_7mffn"]
+
+[node name="PickupItem" type="Node2D" unique_id=1943037232]
+texture_filter = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1936495508]
+texture_filter = 1
+texture = ExtResource("1_7mffn")
+offset = Vector2(0, -5)

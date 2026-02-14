@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://denhhh48d0r1k"]
+
+[ext_resource type="Texture2D" uid="uid://drp4nmepkx0mb" path="res://assets/van/van_wheels.png" id="1_8opdr"]
+[ext_resource type="Texture2D" uid="uid://dwgdygncv86xc" path="res://assets/van/van_body.png" id="2_lvfqf"]
+[ext_resource type="Script" uid="uid://cprkwifs1loug" path="res://van_front_push_out_of_the_wayer.gd" id="3_lvfqf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6cji5"]
+size = Vector2(96, 49)
+
+[sub_resource type="Animation" id="Animation_8opdr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Van:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_lvfqf"]
+resource_name = "van_bumpy"
+length = 1.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Van:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6333333, 1.2333333),
+"transitions": PackedFloat32Array(1, 1.464086, 1),
+"update": 0,
+"values": [Vector2(0, 2), Vector2(0, 1), Vector2(0, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ubcua"]
+_data = {
+&"RESET": SubResource("Animation_8opdr"),
+&"van_bumpy": SubResource("Animation_lvfqf")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8opdr"]
+size = Vector2(8, 49)
+
+[node name="Van" type="StaticBody2D" unique_id=1415347441]
+
+[node name="VanWheels" type="Sprite2D" parent="." unique_id=1045507201]
+texture_filter = 1
+position = Vector2(0, 4)
+scale = Vector2(2, 2)
+texture = ExtResource("1_8opdr")
+
+[node name="Van" type="Sprite2D" parent="." unique_id=1760046270]
+texture_filter = 1
+position = Vector2(0, 4)
+scale = Vector2(2, 2)
+texture = ExtResource("2_lvfqf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=541239841]
+position = Vector2(-1, 23.5)
+shape = SubResource("RectangleShape2D_6cji5")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1198353702]
+libraries/ = SubResource("AnimationLibrary_ubcua")
+autoplay = &"van_bumpy"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=333917233]
+polygon = PackedVector2Array(-49, 48, 34, 48, 54, 23, 40, -1, -49, -1)
+
+[node name="VanFrontPushOutOfTheWayer" type="Area2D" parent="." unique_id=1375861234]
+script = ExtResource("3_lvfqf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VanFrontPushOutOfTheWayer" unique_id=1268736988]
+position = Vector2(51, 23.5)
+shape = SubResource("RectangleShape2D_8opdr")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dusbglsitf3v2"
-path="res://.godot/imported/Fuel.png-e39299804f5c5b3362afec4311745ffb.ctex"
+uid="uid://d2hcltae8ruth"
+path="res://.godot/imported/bag_o_beans.png-40d826d12227ab80dcb6d3142a31286e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/Fuel.png"
-dest_files=["res://.godot/imported/Fuel.png-e39299804f5c5b3362afec4311745ffb.ctex"]
+source_file="res://assets/items/bag_o_beans.png"
+dest_files=["res://.godot/imported/bag_o_beans.png-40d826d12227ab80dcb6d3142a31286e.ctex"]
 
 [params]
 
