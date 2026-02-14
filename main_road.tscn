@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://kfbxeuoxrgii"]
+
+[ext_resource type="Texture2D" uid="uid://dmklrsis6k7v1" path="res://assets/background/bkg_road.png" id="1_4yq8l"]
+
+[node name="MainRoad" type="Parallax2D" unique_id=1639433594]
+repeat_size = Vector2(720, 0)
+
+[node name="BkgRoad" type="Sprite2D" parent="." unique_id=551274413]
+scale = Vector2(2, 2)
+texture = ExtResource("1_4yq8l")
+centered = false
+metadata/_edit_lock_ = true

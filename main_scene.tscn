@@ -2,15 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://ty4dgymwidvn" path="res://player_character.tscn" id="1_0f027"]
 [ext_resource type="Script" uid="uid://p6i5h5pl6ktp" path="res://background.gd" id="1_2c62f"]
+[ext_resource type="PackedScene" uid="uid://kfbxeuoxrgii" path="res://main_road.tscn" id="2_671wp"]
 [ext_resource type="Texture2D" uid="uid://deq766i1udm3f" path="res://assets/background/bkg_bottom_foliage.png" id="2_hq1ik"]
 [ext_resource type="Texture2D" uid="uid://c6rv6qeypokrj" path="res://assets/background/bkg_bottom_trees.png" id="3_nfk4m"]
-[ext_resource type="Texture2D" uid="uid://dmklrsis6k7v1" path="res://assets/background/bkg_road.png" id="4_66tet"]
 [ext_resource type="Texture2D" uid="uid://cf0axp8otstcv" path="res://assets/background/bkg_top_foliage.png" id="5_7ycvg"]
 [ext_resource type="Texture2D" uid="uid://c663y7xxglot4" path="res://assets/background/bkg_top_trees.png" id="6_wr18j"]
 [ext_resource type="PackedScene" uid="uid://denhhh48d0r1k" path="res://van.tscn" id="9_7ycvg"]
 [ext_resource type="Script" uid="uid://c15ku48tyddsy" path="res://van.gd" id="9_qwutr"]
 [ext_resource type="Shader" uid="uid://6x0ueofoqah3" path="res://crt_vhs.gdshader" id="9_wr18j"]
 [ext_resource type="Texture2D" uid="uid://r50m3mnax114" path="res://assets/van/headlight_gradient.png" id="10_qwutr"]
+[ext_resource type="Script" uid="uid://dagehb7l2rw6u" path="res://canvas_modulate.gd" id="12_671wp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qwutr"]
 shader = ExtResource("9_wr18j")
@@ -49,8 +50,10 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
-[node name="MainScene" type="Node2D" unique_id=981094626]
-y_sort_enabled = true
+[sub_resource type="CircleShape2D" id="CircleShape2D_qwutr"]
+radius = 207.61743
+
+[node name="MainScene" type="Node" unique_id=1984564942]
 
 [node name="Background" type="Node2D" parent="." unique_id=61237509]
 texture_filter = 1
@@ -59,14 +62,7 @@ velocity = -30.0
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="MainRoad" type="Parallax2D" parent="Background" unique_id=983628048]
-repeat_size = Vector2(720, 0)
-
-[node name="BkgRoad" type="Sprite2D" parent="Background/MainRoad" unique_id=43170530]
-scale = Vector2(2, 2)
-texture = ExtResource("4_66tet")
-centered = false
-metadata/_edit_lock_ = true
+[node name="MainRoad" parent="Background" unique_id=1639433594 instance=ExtResource("2_671wp")]
 
 [node name="TopTrees" type="Parallax2D" parent="Background" unique_id=792922458]
 repeat_size = Vector2(720, 0)
@@ -127,17 +123,27 @@ mouse_filter = 2
 position = Vector2(298, 172)
 script = ExtResource("9_qwutr")
 
-[node name="PointLight2D" type="PointLight2D" parent="Van" unique_id=1397404702]
+[node name="RadiusLight" type="PointLight2D" parent="Van" unique_id=1397404702]
 texture = SubResource("GradientTexture2D_qwutr")
+texture_scale = 0.9
 
-[node name="PointLight2D Headlights" type="PointLight2D" parent="Van" unique_id=1626541998]
+[node name="HeadLights" type="PointLight2D" parent="Van" unique_id=1626541998]
 position = Vector2(35, 8)
 rotation = 0.7853982
 texture = ExtResource("10_qwutr")
 
-[node name="PlayerCharacter" parent="." unique_id=510971326 instance=ExtResource("1_0f027")]
+[node name="LightAreaChecker" type="Area2D" parent="Van" unique_id=850361262]
+
+[node name="CollisionCircle2D" type="CollisionShape2D" parent="Van/LightAreaChecker" unique_id=1085046366]
+shape = SubResource("CircleShape2D_qwutr")
+
+[node name="Timer" type="Timer" parent="Van" unique_id=1608508578]
+autostart = true
+
+[node name="PlayerCharacter" parent="." unique_id=510971326 node_paths=PackedStringArray("light_area") instance=ExtResource("1_0f027")]
 y_sort_enabled = true
-position = Vector2(171, 205)
+position = Vector2(379, 209)
+light_area = NodePath("../Van/LightAreaChecker")
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter" unique_id=341559836]
 visible = false
@@ -150,3 +156,10 @@ metadata/_edit_lock_ = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=707682203]
 color = Color(0, 0, 0, 1)
+script = ExtResource("12_671wp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1962196691]
+
+[connection signal="timeout" from="Van/Timer" to="Van" method="_on_timer_timeout"]
+[connection signal="health_changed" from="PlayerCharacter" to="Van" method="_on_player_character_health_changed"]
+[connection signal="health_changed" from="PlayerCharacter" to="CanvasModulate" method="_on_player_character_health_changed"]
