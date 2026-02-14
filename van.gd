@@ -35,4 +35,6 @@ func _on_player_character_health_changed(health: float) -> void:
 	#radiusLight.texture_scale = clamp(remap(health,0,100,0, max_light_scale), 0, 1)
 	radiusLight.texture_scale = clamp(light_mapped, 0, 1)
 	
+	headLights.enabled = (health >= 100)
+	
 	pass # Replace with function body.
