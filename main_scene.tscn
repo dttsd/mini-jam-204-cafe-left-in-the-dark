@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dmklrsis6k7v1" path="res://assets/background/bkg_road.png" id="4_66tet"]
 [ext_resource type="Texture2D" uid="uid://cf0axp8otstcv" path="res://assets/background/bkg_top_foliage.png" id="5_7ycvg"]
 [ext_resource type="Texture2D" uid="uid://c663y7xxglot4" path="res://assets/background/bkg_top_trees.png" id="6_wr18j"]
-[ext_resource type="Texture2D" uid="uid://bfkv66c5ddqpv" path="res://assets/van.png" id="8_7ycvg"]
+[ext_resource type="PackedScene" uid="uid://denhhh48d0r1k" path="res://van.tscn" id="9_7ycvg"]
 [ext_resource type="Shader" uid="uid://6x0ueofoqah3" path="res://crt_vhs.gdshader" id="9_wr18j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qwutr"]
@@ -36,11 +36,14 @@ shader_parameter/glow_strength = 0.25
 shader_parameter/glow_threshold = 0.65
 
 [node name="MainScene" type="Node2D" unique_id=981094626]
+y_sort_enabled = true
 
 [node name="Background" type="Node2D" parent="." unique_id=61237509]
 texture_filter = 1
 script = ExtResource("1_2c62f")
 velocity = -30.0
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="MainRoad" type="Parallax2D" parent="Background" unique_id=983628048]
 repeat_size = Vector2(720, 0)
@@ -86,30 +89,13 @@ offset_top = 361.0
 offset_right = 40.0
 offset_bottom = 470.31372
 scale = Vector2(18.04, 2.04)
-color = Color(0.3254902, 0, 0, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="BkgBottomTrees" type="Sprite2D" parent="Background/BottomTrees" unique_id=1557729734]
 position = Vector2(0, 17)
 scale = Vector2(2, 2)
 texture = ExtResource("3_nfk4m")
 centered = false
-
-[node name="PlayerCharacter" parent="." unique_id=510971326 instance=ExtResource("1_0f027")]
-position = Vector2(161, 178)
-speed = 400
-
-[node name="Camera2D" type="Camera2D" parent="PlayerCharacter" unique_id=341559836]
-scale = Vector2(0.5, 0.5)
-limit_left = 0
-limit_top = 0
-limit_bottom = 600
-position_smoothing_enabled = true
-
-[node name="Van" type="Sprite2D" parent="." unique_id=557733051]
-texture_filter = 1
-position = Vector2(329, 181)
-scale = Vector2(2, 2)
-texture = ExtResource("8_7ycvg")
 
 [node name="VHS_EFFECT_LAYER" type="CanvasLayer" parent="." unique_id=317191588]
 visible = false
@@ -122,3 +108,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Van" parent="." unique_id=769181045 instance=ExtResource("9_7ycvg")]
+position = Vector2(298, 172)
+
+[node name="PlayerCharacter" parent="." unique_id=510971326 instance=ExtResource("1_0f027")]
+y_sort_enabled = true
+position = Vector2(171, 205)
+
+[node name="Camera2D" type="Camera2D" parent="PlayerCharacter" unique_id=341559836]
+visible = false
+scale = Vector2(0.5, 0.5)
+limit_left = -100
+limit_top = 0
+limit_bottom = 400
+position_smoothing_enabled = true
+metadata/_edit_lock_ = true

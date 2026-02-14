@@ -5,9 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://b70oasqy3obcn" path="res://assets/player/Player-2.png" id="3_6qc1w"]
 [ext_resource type="Texture2D" uid="uid://1yu8l2bbpk" path="res://assets/player/Player-3.png" id="4_uuvki"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_04jrr"]
-size = Vector2(11, 17)
-
 [sub_resource type="Gradient" id="Gradient_02ohv"]
 offsets = PackedFloat32Array(0.2952381, 0.7, 0.9190476, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1, 1, 0.6901961, 0.14117648, 1, 1, 1, 0.23921569, 0)
@@ -48,13 +45,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04jrr"]
+size = Vector2(11, 2)
+
 [node name="PlayerCharacter" type="CharacterBody2D" unique_id=510971326]
 scale = Vector2(2, 2)
 motion_mode = 1
 script = ExtResource("1_02ohv")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1782037744]
-shape = SubResource("RectangleShape2D_04jrr")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=441646814]
 visible = false
@@ -63,7 +60,12 @@ texture = SubResource("GradientTexture2D_5up26")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=83338523]
 texture_filter = 1
+position = Vector2(0, -8.5)
 sprite_frames = SubResource("SpriteFrames_4yf86")
 animation = &"Walk"
 autoplay = "Idle"
 frame_progress = 0.5593479
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1782037744]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_04jrr")

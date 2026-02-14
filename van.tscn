@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://denhhh48d0r1k"]
+
+[ext_resource type="Texture2D" uid="uid://drp4nmepkx0mb" path="res://assets/van/van_wheels.png" id="1_8opdr"]
+[ext_resource type="Texture2D" uid="uid://dwgdygncv86xc" path="res://assets/van/van_body.png" id="2_lvfqf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6cji5"]
+size = Vector2(98, 49)
+
+[node name="Van" type="RigidBody2D" unique_id=769181045]
+gravity_scale = 0.0
+
+[node name="VanWheels" type="Sprite2D" parent="." unique_id=1045507201]
+texture_filter = 1
+position = Vector2(0, 4)
+scale = Vector2(2, 2)
+texture = ExtResource("1_8opdr")
+
+[node name="Van" type="Sprite2D" parent="." unique_id=1760046270]
+texture_filter = 1
+position = Vector2(0, 4)
+scale = Vector2(2, 2)
+texture = ExtResource("2_lvfqf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=541239841]
+position = Vector2(0, 23.5)
+shape = SubResource("RectangleShape2D_6cji5")
