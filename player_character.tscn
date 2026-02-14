@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://ty4dgymwidvn"]
 
 [ext_resource type="Script" uid="uid://crll7i13ld2iv" path="res://scripts/player_character.gd" id="1_02ohv"]
-[ext_resource type="Texture2D" uid="uid://bo2jex2r0a6rn" path="res://assets/player/Player-1.png" id="2_0hvvw"]
-[ext_resource type="Texture2D" uid="uid://b70oasqy3obcn" path="res://assets/player/Player-2.png" id="3_6qc1w"]
-[ext_resource type="Texture2D" uid="uid://1yu8l2bbpk" path="res://assets/player/Player-3.png" id="4_uuvki"]
+[ext_resource type="Texture2D" uid="uid://c3e0jcyyegb10" path="res://assets/player/PlayerIdle_-4.png" id="2_4yf86"]
+[ext_resource type="Texture2D" uid="uid://b7iqlbt4oqlag" path="res://assets/player/PlayerIdle_-3.png" id="3_8bl0p"]
+[ext_resource type="Texture2D" uid="uid://cqfd0xuexa365" path="res://assets/player/PlayerIdle_-1.png" id="4_he2na"]
+[ext_resource type="Texture2D" uid="uid://2f4lu4ccg1j7" path="res://assets/player/PlayerIdle_-2.png" id="5_p3c78"]
+[ext_resource type="Texture2D" uid="uid://bj5460euf165g" path="res://assets/player/PlayerWalk-1.png" id="6_eh3ko"]
+[ext_resource type="Texture2D" uid="uid://bxilhvk4ptw67" path="res://assets/player/PlayerWalk-3.png" id="7_bgme8"]
+[ext_resource type="Texture2D" uid="uid://c38ovgt3qideo" path="res://assets/player/PlayerWalk-2.png" id="8_g1g7m"]
 
 [sub_resource type="Gradient" id="Gradient_02ohv"]
 offsets = PackedFloat32Array(0.2952381, 0.7, 0.9190476, 1)
@@ -21,24 +25,44 @@ fill_to = Vector2(1, 0.5)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_0hvvw")
+"texture": ExtResource("2_4yf86")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8bl0p")
 }],
-"loop": true,
-"name": &"Idle",
+"loop": false,
+"name": &"Blink",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_6qc1w")
-}, {
-"duration": 0.5,
-"texture": ExtResource("2_0hvvw")
+"texture": ExtResource("4_he2na")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_uuvki")
+"texture": ExtResource("5_p3c78")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8bl0p")
 }, {
 "duration": 0.5,
-"texture": ExtResource("2_0hvvw")
+"texture": ExtResource("2_4yf86")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_eh3ko")
+}, {
+"duration": 0.5,
+"texture": ExtResource("7_bgme8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_g1g7m")
+}, {
+"duration": 0.5,
+"texture": ExtResource("7_bgme8")
 }],
 "loop": true,
 "name": &"Walk",
@@ -64,7 +88,7 @@ position = Vector2(0, -8.5)
 sprite_frames = SubResource("SpriteFrames_4yf86")
 animation = &"Walk"
 autoplay = "Idle"
-frame_progress = 0.5593479
+frame_progress = 0.47324437
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1782037744]
 position = Vector2(0, -1)

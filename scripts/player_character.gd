@@ -17,11 +17,12 @@ func get_player_input() -> void:
 	
 
 	if vector:
+		animated_sprite.play("Walk")
+		modulate = Color.WHITE
+		animated_sprite.flip_h = false
 		# walking down screen anim
 		if vector.y > 0:
-			animated_sprite.play("Walk")
-			modulate = Color.WHITE
-			animated_sprite.flip_h = false
+			pass
 		# walking up screen anim
 		elif vector.y < 0:
 			animated_sprite.play_backwards("Walk")
