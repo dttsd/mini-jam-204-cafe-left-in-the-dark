@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://cf0axp8otstcv" path="res://assets/background/bkg_top_foliage.png" id="5_7ycvg"]
 [ext_resource type="Texture2D" uid="uid://c663y7xxglot4" path="res://assets/background/bkg_top_trees.png" id="6_wr18j"]
 [ext_resource type="PackedScene" uid="uid://denhhh48d0r1k" path="res://van.tscn" id="9_7ycvg"]
+[ext_resource type="Script" uid="uid://c15ku48tyddsy" path="res://van.gd" id="9_qwutr"]
 [ext_resource type="Shader" uid="uid://6x0ueofoqah3" path="res://crt_vhs.gdshader" id="9_wr18j"]
+[ext_resource type="Texture2D" uid="uid://r50m3mnax114" path="res://assets/van/headlight_gradient.png" id="10_qwutr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qwutr"]
 shader = ExtResource("9_wr18j")
@@ -34,6 +36,18 @@ shader_parameter/roll_speed = 0.1
 shader_parameter/roll_strength = 0.15
 shader_parameter/glow_strength = 0.25
 shader_parameter/glow_threshold = 0.65
+
+[sub_resource type="Gradient" id="Gradient_wr18j"]
+offsets = PackedFloat32Array(0.1092437, 0.29411766, 1)
+colors = PackedColorArray(0.99999994, 0.93077266, 0.8048288, 1, 0.7704748, 0.59060067, 0.5188266, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qwutr"]
+gradient = SubResource("Gradient_wr18j")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
 
 [node name="MainScene" type="Node2D" unique_id=981094626]
 y_sort_enabled = true
@@ -111,6 +125,15 @@ mouse_filter = 2
 
 [node name="Van" parent="." unique_id=769181045 instance=ExtResource("9_7ycvg")]
 position = Vector2(298, 172)
+script = ExtResource("9_qwutr")
+
+[node name="PointLight2D" type="PointLight2D" parent="Van" unique_id=1397404702]
+texture = SubResource("GradientTexture2D_qwutr")
+
+[node name="PointLight2D Headlights" type="PointLight2D" parent="Van" unique_id=1626541998]
+position = Vector2(35, 8)
+rotation = 0.7853982
+texture = ExtResource("10_qwutr")
 
 [node name="PlayerCharacter" parent="." unique_id=510971326 instance=ExtResource("1_0f027")]
 y_sort_enabled = true
@@ -124,3 +147,6 @@ limit_top = 0
 limit_bottom = 400
 position_smoothing_enabled = true
 metadata/_edit_lock_ = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=707682203]
+color = Color(0, 0, 0, 1)

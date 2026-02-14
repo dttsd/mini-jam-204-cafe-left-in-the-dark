@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dwgdygncv86xc" path="res://assets/van/van_body.png" id="2_lvfqf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6cji5"]
-size = Vector2(98, 49)
+size = Vector2(96, 49)
 
 [sub_resource type="Animation" id="Animation_8opdr"]
 length = 0.001
@@ -44,8 +44,7 @@ _data = {
 &"van_bumpy": SubResource("Animation_lvfqf")
 }
 
-[node name="Van" type="RigidBody2D" unique_id=769181045]
-gravity_scale = 0.0
+[node name="Van" type="StaticBody2D" unique_id=1415347441]
 
 [node name="VanWheels" type="Sprite2D" parent="." unique_id=1045507201]
 texture_filter = 1
@@ -60,7 +59,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_lvfqf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=541239841]
-position = Vector2(0, 23.5)
+position = Vector2(-1, 23.5)
 shape = SubResource("RectangleShape2D_6cji5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1198353702]
