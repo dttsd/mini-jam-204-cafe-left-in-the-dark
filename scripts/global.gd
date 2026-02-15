@@ -1,6 +1,11 @@
 extends Node
 
+signal fuel_changed
 
+@export var van_fuel: float = 100:
+	set(value):
+		van_fuel = value
+		fuel_changed.emit(value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

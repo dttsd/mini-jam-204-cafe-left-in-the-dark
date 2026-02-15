@@ -6,6 +6,9 @@ const JUMP_VELOCITY = -400.0
 
 var holding_item: bool = false
 
+@export var van: StaticBody2D
+@onready var van_interact_area:Area2D = van.get_node("InteractArea")
+
 @export var light_area: Area2D
 @export var darkness_damage: float = 20
 @export var player_health: float = 100:
@@ -21,9 +24,35 @@ signal health_changed(health: float)
 @onready var animated_sprite = $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
+	if holding_item == true:
+		# check if overlapping van, and add item
+		if $GrabArea.overlaps_area(van_interact_area):
+			add_item_to_van()
+
+		pass
+
 	get_player_input()
 	move_and_slide()
 	handle_light_damage(delta)
+	
+func add_item_to_van():
+	var item: Area2D = $Hands.get_child(0)
+	# move item to van
+	item.reparent(van)
+	
+	
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(item, "position", Vector2.ZERO, .3)
+	tween.tween_property(item, "modulate", Color(1,1,1,0), .3)
+	tween.tween_callback(func(): item.queue_free())
+
+	# increment van fuel
+	Global.van_fuel += 10
+	
+	# remove item from hands
+	holding_item = false
+	pass
 	
 func _input(event: InputEvent) -> void:
 	# pressed e or space or enter
@@ -68,16 +97,16 @@ func get_player_input() -> void:
 	if vector:
 		# handle look direction
 		animated_sprite.play("Walk")
-		modulate = Color.WHITE
+		self_modulate = Color.WHITE
 		animated_sprite.flip_h = false
 		# walking down screen anim
 		if vector.y > 0:
 			pass
-		# walking up screen anim
+		# walking up screen anim (make character dark)
 		elif vector.y < 0:
 			animated_sprite.play_backwards("Walk")
 			animated_sprite.flip_h = true
-			modulate = Color.BLACK
+			self_modulate = Color.BLACK
 	else:
 		animated_sprite.play("Idle")
 	

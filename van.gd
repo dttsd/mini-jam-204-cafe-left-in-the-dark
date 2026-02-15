@@ -6,17 +6,32 @@ extends StaticBody2D
 @onready var radiusLight := $RadiusLight
 @onready var headLights := $HeadLights
 
+@export var van_fuel_consumption:float = 5
+
+@onready var interactArea: Area2D = $InteractArea
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#self.constant_linear_velocity = Vector2.RIGHT * speed
+	#interactArea.area_entered.connect(_on_interact_area_entered)
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	position += Vector2.RIGHT * speed * delta
+	decrease_van_stats(delta)
 	pass
+	
+func decrease_van_stats(delta: float):
+	
+	Global.van_fuel -= van_fuel_consumption * delta
+	pass
+	
 
+#func _on_interact_area_entered():
+	##print("VAN ENTER: ", area)
+	#pass
 
 func _on_timer_timeout() -> void:
 	var rand_amt: float = randf()
