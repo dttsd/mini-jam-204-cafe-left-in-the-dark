@@ -1,10 +1,17 @@
 extends CharacterBody2D
 
 
-@export_range(0,1000) var speed := 120
+@export_range(0,1000) var max_speed := 120
+@onready var speed = max_speed
+
+## Multiplied to Player speed when holding an item. (0 to 1 float)
+@export var holding_item_speed_modifer:float = 0.5
 const JUMP_VELOCITY = -400.0
 
-var holding_item: bool = false
+var holding_item: bool = false:
+	set(value):
+		holding_item = value
+		speed = (holding_item_speed_modifer * max_speed) if holding_item else max_speed
 
 @export var van: StaticBody2D
 @onready var van_interact_area:Area2D = van.get_node("InteractArea")
@@ -34,6 +41,7 @@ func _physics_process(delta: float) -> void:
 	get_player_input()
 	move_and_slide()
 	handle_light_damage(delta)
+	print("player speed %s max speed %s" % [speed, max_speed])
 	
 func add_item_to_van():
 	# get item reference from hands

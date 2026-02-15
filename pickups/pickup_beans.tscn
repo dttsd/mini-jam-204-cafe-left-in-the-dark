@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bloiee6udyis7" path="res://pickups/item_component.gd" id="3_506w5"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bvqji"]
+cull_mode = 2
 polygon = PackedVector2Array(4, -9, 4, 0, -4, 0, -4, -9)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bvqji"]

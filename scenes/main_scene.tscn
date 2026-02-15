@@ -107,7 +107,6 @@ texture = ExtResource("6_wr18j")
 centered = false
 
 [node name="BottomFoliage" type="Parallax2D" parent="World/Background" unique_id=1134689429]
-scroll_scale = Vector2(1.1, 1)
 repeat_size = Vector2(720, 0)
 
 [node name="BkgBottomFoliage" type="Sprite2D" parent="World/Background/BottomFoliage" unique_id=247592134]
@@ -208,6 +207,7 @@ debug_color = Color(0.66943777, 0.49055326, 0.39097354, 0.41960785)
 [node name="PlayerCharacter" parent="World" unique_id=510971326 node_paths=PackedStringArray("van", "light_area") instance=ExtResource("1_0f027")]
 y_sort_enabled = true
 position = Vector2(414, 204)
+holding_item_speed_modifer = 0.6
 van = NodePath("../Van")
 light_area = NodePath("../Van/LightAreaChecker")
 
