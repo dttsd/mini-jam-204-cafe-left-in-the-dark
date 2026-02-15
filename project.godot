@@ -31,6 +31,10 @@ player=""
 item=""
 "grab area"=""
 
+[gui]
+
+theme/default_font_antialiasing=0
+
 [input]
 
 ui_accept={

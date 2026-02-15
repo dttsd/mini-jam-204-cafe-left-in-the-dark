@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://bj5460euf165g" path="res://assets/player/PlayerWalk-1.png" id="6_eh3ko"]
 [ext_resource type="Texture2D" uid="uid://bxilhvk4ptw67" path="res://assets/player/PlayerWalk-3.png" id="7_bgme8"]
 [ext_resource type="Texture2D" uid="uid://c38ovgt3qideo" path="res://assets/player/PlayerWalk-2.png" id="8_g1g7m"]
+[ext_resource type="Texture2D" uid="uid://cbrdhk3jq7rkm" path="res://assets/player/PlayerWalkAWAY-2.png" id="9_p3c78"]
+[ext_resource type="Texture2D" uid="uid://ba3r3fnjx0r8t" path="res://assets/player/PlayerWalkAWAY-1.png" id="10_eh3ko"]
+[ext_resource type="Texture2D" uid="uid://gdh7o06t233u" path="res://assets/player/PlayerWalkAWAY-3.png" id="11_bgme8"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4yf86"]
 polygon = PackedVector2Array(1.5, 0, 0, 0, 0, -1, -1, -1, -1, -4, -1, -7, 1.5, -7)
@@ -56,19 +59,36 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_eh3ko")
-}, {
-"duration": 0.5,
-"texture": ExtResource("7_bgme8")
-}, {
-"duration": 1.0,
 "texture": ExtResource("8_g1g7m")
 }, {
 "duration": 0.5,
+"texture": ExtResource("6_eh3ko")
+}, {
+"duration": 1.0,
 "texture": ExtResource("7_bgme8")
+}, {
+"duration": 0.5,
+"texture": ExtResource("6_eh3ko")
 }],
 "loop": true,
 "name": &"Walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_p3c78")
+}, {
+"duration": 0.5,
+"texture": ExtResource("10_eh3ko")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_bgme8")
+}, {
+"duration": 0.5,
+"texture": ExtResource("10_eh3ko")
+}],
+"loop": true,
+"name": &"Walk_Away",
 "speed": 5.0
 }]
 
@@ -99,7 +119,7 @@ position = Vector2(0, -8.5)
 sprite_frames = SubResource("SpriteFrames_4yf86")
 animation = &"Walk"
 autoplay = "Idle"
-frame_progress = 0.88866955
+frame_progress = 0.18470447
 offset = Vector2(-0.5, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1782037744]

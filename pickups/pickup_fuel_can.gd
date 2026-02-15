@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name item_fuel_can
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

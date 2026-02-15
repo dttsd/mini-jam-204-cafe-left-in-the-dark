@@ -5,10 +5,15 @@ extends StaticBody2D
 @onready var timer := $Timer
 @onready var radiusLight := $RadiusLight
 @onready var headLights := $HeadLights
+@onready var engine_sound: AudioStreamPlayer2D = self.get_children().filter(func(el): return el is AudioStreamPlayer2D)[0]
 
 @export var van_fuel_consumption:float = 5
 
 @onready var interactArea: Area2D = $InteractArea
+@onready var smoke_emitter:GPUParticles2D = self.find_child("SmokeParticles") 
+
+@export var fuel_curve_speed: Curve
+var engine_running = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,6 +31,29 @@ func _process(delta: float) -> void:
 func decrease_van_stats(delta: float):
 	
 	Global.van_fuel -= van_fuel_consumption * delta
+	speed = fuel_curve_speed.sample(Global.van_fuel) * 30
+	
+	# turn engine sound off if below set speed
+	if speed < 1:
+		if engine_running:
+			#engine_sound.playing = false
+			# tween
+			var tween = get_tree().create_tween()
+			tween.tween_property(engine_sound, "pitch_scale", 0, 1)
+			#tween.tween_callback(func(): item.queue_free())
+			$AnimationPlayer.pause()
+
+			smoke_emitter.emitting = false
+			engine_running = false
+	else:
+		if not engine_running:
+			var tween = get_tree().create_tween()
+			tween.tween_property(engine_sound, "pitch_scale", 1, 1)
+			#tween.tween_callback(func(): item.queue_free())
+			$AnimationPlayer.play()
+			smoke_emitter.emitting = true
+			engine_running = true
+			
 	pass
 	
 

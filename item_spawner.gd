@@ -6,6 +6,8 @@ extends Node2D
 @export_range(0,30) var spawn_interval_min := 5
 @export_range(0,30) var spawn_interval_max := 10
 
+@onready var spawn_area_shapes = spawn_area.get_children().filter(func(el): return el is CollisionShape2D)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,7 +32,12 @@ func spawn_item():
 	if current_items.is_empty():
 		return
 
-	var collision_shape = spawn_area.get_node("CollisionShape2D") as CollisionShape2D
+	# choose random collision shape2d within spawnarea
+	print(spawn_area_shapes)
+	var collision_shape: CollisionShape2D = spawn_area_shapes.pick_random()
+	
+	#var collision_shape = spawn_area.get_node("CollisionShape2D") as CollisionShape2D
+	
 	var shape := collision_shape.shape as Shape2D
 	var spawn_rect := shape.get_rect()
 	

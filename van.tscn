@@ -87,8 +87,8 @@ _data = {
 size = Vector2(8, 49)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ax43"]
-radius = 52.0
-height = 148.0
+radius = 45.0
+height = 118.0
 
 [node name="Van" type="StaticBody2D" unique_id=1415347441]
 

@@ -48,7 +48,7 @@ func add_item_to_van():
 	tween.tween_callback(func(): item.queue_free())
 
 	# increment van fuel
-	Global.van_fuel += 10
+	Global.van_fuel += 30
 	
 	# remove item from hands
 	holding_item = false
@@ -84,6 +84,10 @@ func _input(event: InputEvent) -> void:
 			tween.tween_callback(func(): print("tween complete"))
 
 			closest_item.reparent($Hands)
+			
+			# remove item from item group to prevent re-grabbing and null error when queue_free later
+			closest_item.remove_from_group("item")
+			
 			holding_item = true
 			#closest_item.rotate(5)
 			
@@ -96,17 +100,18 @@ func get_player_input() -> void:
 
 	if vector:
 		# handle look direction
-		animated_sprite.play("Walk")
-		self_modulate = Color.WHITE
-		animated_sprite.flip_h = false
+
 		# walking down screen anim
-		if vector.y > 0:
+		if vector.y >= 0:
+			animated_sprite.play("Walk")
+			self_modulate = Color.WHITE
+			animated_sprite.flip_h = false
 			pass
-		# walking up screen anim (make character dark)
+		# walking (away) up screen anim (make character dark)
 		elif vector.y < 0:
-			animated_sprite.play_backwards("Walk")
-			animated_sprite.flip_h = true
-			self_modulate = Color.BLACK
+			animated_sprite.play("Walk_Away")
+			#animated_sprite.flip_h = true
+			#self_modulate = Color.BLACK
 	else:
 		animated_sprite.play("Idle")
 	
