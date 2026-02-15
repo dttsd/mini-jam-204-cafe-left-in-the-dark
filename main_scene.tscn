@@ -56,7 +56,7 @@ fill_to = Vector2(1, 0.5)
 radius = 207.61743
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_42l1d"]
-size = Vector2(98, 186)
+size = Vector2(8, 244)
 
 [node name="MainScene" type="Node" unique_id=1984564942]
 
@@ -159,9 +159,19 @@ shape = SubResource("CircleShape2D_qwutr")
 [node name="Timer" type="Timer" parent="World/Van" unique_id=1608508578]
 autostart = true
 
+[node name="SpawnArea2D" type="Area2D" parent="World/Van" unique_id=741415238]
+position = Vector2(83, 32)
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Van/SpawnArea2D" unique_id=1638078399]
+position = Vector2(161, -11)
+shape = SubResource("RectangleShape2D_42l1d")
+debug_color = Color(0.66943777, 0.49055326, 0.39097354, 0.41960785)
+
 [node name="PlayerCharacter" parent="World" unique_id=510971326 node_paths=PackedStringArray("light_area") instance=ExtResource("1_0f027")]
 y_sort_enabled = true
-position = Vector2(381, 204)
+position = Vector2(414, 204)
 light_area = NodePath("../Van/LightAreaChecker")
 
 [node name="Camera2D" type="Camera2D" parent="World/PlayerCharacter" unique_id=341559836]
@@ -173,26 +183,22 @@ limit_bottom = 400
 position_smoothing_enabled = true
 metadata/_edit_lock_ = true
 
-[node name="SpawnArea2D" type="Area2D" parent="World/PlayerCharacter" unique_id=741415238]
-scale = Vector2(0.5, 0.5)
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/PlayerCharacter/SpawnArea2D" unique_id=1638078399]
-shape = SubResource("RectangleShape2D_42l1d")
-debug_color = Color(0.66943777, 0.49055326, 0.39097354, 0.41960785)
-
 [node name="CanvasModulate" type="CanvasModulate" parent="World" unique_id=707682203]
-visible = false
 color = Color(0, 0, 0, 1)
 script = ExtResource("12_671wp")
 
 [node name="ItemSpawner" type="Node2D" parent="World" unique_id=785417979 node_paths=PackedStringArray("spawn_area")]
 script = ExtResource("13_mo76n")
 current_items = Array[PackedScene]([ExtResource("14_42l1d")])
-spawn_area = NodePath("../PlayerCharacter/SpawnArea2D")
+spawn_area = NodePath("../Van/SpawnArea2D")
 
 [node name="Timer" type="Timer" parent="World/ItemSpawner" unique_id=254761191]
+
+[node name="PickupFuel" parent="World" unique_id=1040813394 instance=ExtResource("14_42l1d")]
+position = Vector2(424, 245)
+
+[node name="PickupFuel2" parent="World" unique_id=136822418 instance=ExtResource("14_42l1d")]
+position = Vector2(455, 240)
 
 [node name="GUI" type="Control" parent="." unique_id=1335974019]
 layout_mode = 3

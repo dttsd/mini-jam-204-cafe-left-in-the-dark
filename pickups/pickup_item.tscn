@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dusbglsitf3v2" path="res://assets/items/fuel_can.png" id="1_7mffn"]
 
-[node name="PickupItem" type="Node2D" unique_id=1943037232]
+[node name="PickupItem" type="Area2D" unique_id=872806704]
 texture_filter = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1936495508]

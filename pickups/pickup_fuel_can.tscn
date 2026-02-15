@@ -1,8 +1,30 @@
 [gd_scene format=3 uid="uid://d1rqrmxbnedgi"]
 
 [ext_resource type="Texture2D" uid="uid://dusbglsitf3v2" path="res://assets/items/fuel_can.png" id="1_bvqji"]
+[ext_resource type="Script" uid="uid://cm4s7i6xge2vs" path="res://pickups/pickup_fuel_can.gd" id="1_ys5xq"]
+[ext_resource type="Script" uid="uid://bloiee6udyis7" path="res://pickups/item_component.gd" id="2_r64l1"]
 
-[node name="PickupFuel" type="Node2D" unique_id=1040813394]
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bvqji"]
+polygon = PackedVector2Array(5, -4, 5, 5, -3, 5, -3, -4)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bvqji"]
+radius = 12.806249
+
+[node name="PickupFuel" type="Area2D" unique_id=136822418 groups=["item"]]
+texture_filter = 1
+script = ExtResource("1_ys5xq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1519834013]
+scale = Vector2(2, 2)
 texture = ExtResource("1_bvqji")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=2100935681]
+position = Vector2(-2, 0)
+scale = Vector2(2, 2)
+occluder = SubResource("OccluderPolygon2D_bvqji")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1571329846]
+shape = SubResource("CircleShape2D_bvqji")
+
+[node name="ItemComponent" type="Node2D" parent="." unique_id=2073854144]
+script = ExtResource("2_r64l1")

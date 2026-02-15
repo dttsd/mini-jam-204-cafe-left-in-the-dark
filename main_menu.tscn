@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dyyob2hekrcdw"]
+
+[ext_resource type="Script" uid="uid://15j6hv6k3g2j" path="res://main_menu.gd" id="1_06t4h"]
+[ext_resource type="PackedScene" uid="uid://denhhh48d0r1k" path="res://van.tscn" id="2_7vrkn"]
+
+[node name="MainMenu" type="Control" unique_id=1839772401]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_06t4h")
+
+[node name="Button" type="Button" parent="." unique_id=61308336]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 147.0
+offset_right = 204.0
+offset_bottom = 199.0
+text = "load game"
+
+[node name="Van" parent="." unique_id=1415347441 instance=ExtResource("2_7vrkn")]
+position = Vector2(447, 154)
+
+[node name="Label" type="Label" parent="." unique_id=1472472916]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 79.0
+offset_right = 206.0
+offset_bottom = 102.0
+text = "IN THE DARK!!!"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

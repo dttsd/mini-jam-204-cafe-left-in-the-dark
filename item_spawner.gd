@@ -2,12 +2,15 @@ extends Node2D
 
 @export var current_items : Array[PackedScene] = []
 @export var spawn_area: Area2D
-@export var spawn_interval := .1
+#@export_subgroup("Main Category")
+@export_range(0,30) var spawn_interval_min := 5
+@export_range(0,30) var spawn_interval_max := 10
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawn_item()
-	$Timer.wait_time = spawn_interval
+	$Timer.wait_time = spawn_interval_min
 	$Timer.start()
 	pass # Replace with function body.
 
@@ -19,6 +22,8 @@ func _process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	spawn_item()
+	$Timer.wait_time = randf_range(spawn_interval_min, spawn_interval_max)
+	print("spawning next can in %f seconds" % [$Timer.wait_time])
 	pass # Replace with function body.
 	
 func spawn_item():
