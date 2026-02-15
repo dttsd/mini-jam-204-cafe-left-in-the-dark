@@ -13,7 +13,7 @@ config_version=5
 config/name="mini-jam-204-cafe"
 run/main_scene="uid://dx73wx5kjcyy8"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://c5vatcb43dow4"
 
 [autoload]
 
