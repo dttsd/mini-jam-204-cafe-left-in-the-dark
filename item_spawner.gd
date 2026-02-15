@@ -30,6 +30,7 @@ func _on_timer_timeout() -> void:
 	
 func spawn_item():
 	if current_items.is_empty():
+		push_error("can't spawn item, array empty")
 		return
 
 	# choose random collision shape2d within spawnarea
@@ -44,7 +45,7 @@ func spawn_item():
 	var scene : PackedScene = current_items.pick_random()
 	var item : Node2D = scene.instantiate()
 	
-	print("rect: ",spawn_rect.position)
+	#print("rect: ",spawn_rect.position)
 	
 	# get global rect position start
 	var rect_real_pos =  collision_shape.global_position + spawn_rect.position

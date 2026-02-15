@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://d1j3v7asyddfm" path="res://item_spawner.gd" id="13_mo76n"]
 [ext_resource type="PackedScene" uid="uid://d1rqrmxbnedgi" path="res://pickups/pickup_fuel_can.tscn" id="14_42l1d"]
 [ext_resource type="Script" uid="uid://1341lecggt0h" path="res://gui.gd" id="15_2jcla"]
+[ext_resource type="PackedScene" uid="uid://dh4i2n6moy6by" path="res://pickups/pickup_beans.tscn" id="15_u0ygc"]
 [ext_resource type="FontFile" uid="uid://dlkejaj4i273h" path="res://assets/ui/tiny5.regular.ttf" id="16_m35m6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qwutr"]
@@ -224,8 +225,10 @@ script = ExtResource("12_671wp")
 
 [node name="ItemSpawner" type="Node2D" parent="World" unique_id=785417979 node_paths=PackedStringArray("spawn_area")]
 script = ExtResource("13_mo76n")
-current_items = Array[PackedScene]([ExtResource("14_42l1d")])
+current_items = Array[PackedScene]([ExtResource("15_u0ygc"), ExtResource("14_42l1d")])
 spawn_area = NodePath("../Van/SpawnArea2D")
+spawn_interval_min = 1
+spawn_interval_max = 3
 
 [node name="Timer" type="Timer" parent="World/ItemSpawner" unique_id=254761191]
 
@@ -235,9 +238,10 @@ position = Vector2(393, 225)
 [node name="PickupFuel2" parent="World" unique_id=136822418 instance=ExtResource("14_42l1d")]
 position = Vector2(447, 228)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=393438066 node_paths=PackedStringArray("fuel_bar")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=393438066 node_paths=PackedStringArray("fuel_bar", "awake_bar")]
 script = ExtResource("15_2jcla")
 fuel_bar = NodePath("GUI/HBoxContainer/FuelBar")
+awake_bar = NodePath("GUI/HBoxContainer/AwakeBar")
 
 [node name="GUI" type="Control" parent="CanvasLayer" unique_id=1335974019]
 texture_filter = 1
@@ -269,6 +273,15 @@ text = "fuel"
 layout_mode = 2
 size_flags_horizontal = 3
 value = 26.76
+
+[node name="Label2" type="Label" parent="CanvasLayer/GUI/HBoxContainer" unique_id=2147234140]
+layout_mode = 2
+text = "awake"
+
+[node name="AwakeBar" type="ProgressBar" parent="CanvasLayer/GUI/HBoxContainer" unique_id=1806520644]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
 
 [connection signal="timeout" from="World/Van/Timer" to="World/Van" method="_on_timer_timeout"]
 [connection signal="health_changed" from="World/PlayerCharacter" to="World/Van" method="_on_player_character_health_changed"]

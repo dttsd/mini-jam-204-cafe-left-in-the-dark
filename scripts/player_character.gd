@@ -36,7 +36,10 @@ func _physics_process(delta: float) -> void:
 	handle_light_damage(delta)
 	
 func add_item_to_van():
+	# get item reference from hands
 	var item: Area2D = $Hands.get_child(0)
+	
+	
 	# move item to van
 	item.reparent(van)
 	
@@ -47,8 +50,21 @@ func add_item_to_van():
 	tween.tween_property(item, "modulate", Color(1,1,1,0), .3)
 	tween.tween_callback(func(): item.queue_free())
 
-	# increment van fuel
-	Global.van_fuel += 30
+	# handle what item type
+	print("item class: ", item.get_class())
+	match item.get_script().get_global_name():
+		"item_beans":
+			print("BEANS!")
+			# add to bean value
+			Global.awakeness += 30
+		"item_fuel_can":
+			print("FUEL!")
+			# increment van fuel
+			Global.van_fuel += 30
+		_:
+			print("UNKNOWN ITEM!")
+	
+
 	
 	# remove item from hands
 	holding_item = false
@@ -81,7 +97,7 @@ func _input(event: InputEvent) -> void:
 			
 			var tween = get_tree().create_tween()
 			tween.tween_property(closest_item, "position", Vector2.ZERO, .25)
-			tween.tween_callback(func(): print("tween complete"))
+			#tween.tween_callback(func(): print("tween complete"))
 
 			closest_item.reparent($Hands)
 			
