@@ -68,10 +68,10 @@ radius = 207.61743
 light_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_42l1d"]
-size = Vector2(23, 89)
+size = Vector2(23, 67)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m35m6"]
-size = Vector2(23, 81)
+size = Vector2(23, 73)
 
 [sub_resource type="Theme" id="Theme_u0ygc"]
 default_font = ExtResource("16_m35m6")
@@ -192,7 +192,7 @@ monitorable = false
 z_index = 10
 z_as_relative = false
 material = SubResource("CanvasItemMaterial_m35m6")
-position = Vector2(0, 99.5)
+position = Vector2(0, 110.5)
 shape = SubResource("RectangleShape2D_42l1d")
 debug_color = Color(0.66943777, 0.49055326, 0.39097354, 0.41960785)
 
@@ -200,7 +200,7 @@ debug_color = Color(0.66943777, 0.49055326, 0.39097354, 0.41960785)
 z_index = 10
 z_as_relative = false
 material = SubResource("CanvasItemMaterial_m35m6")
-position = Vector2(0, -55.5)
+position = Vector2(0, -72.5)
 shape = SubResource("RectangleShape2D_m35m6")
 debug_color = Color(0.66943777, 0.49055326, 0.39097354, 0.41960785)
 
