@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-@export_range(0,1000) var max_speed := 120
-@onready var speed = max_speed
+@export_range(0,1000) var max_speed: float= 120
+@onready var speed: float = max_speed
 
 ## Multiplied to Player speed when holding an item. (0 to 1 float)
 @export var holding_item_speed_modifer:float = 0.5
