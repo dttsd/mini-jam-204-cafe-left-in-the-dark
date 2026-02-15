@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://ffu72d3ks15w"]
+
+[ext_resource type="Script" uid="uid://bxcyjxti204gq" path="res://scripts/sleep_bar.gd" id="1_bfdo6"]
+[ext_resource type="Texture2D" uid="uid://b2xwh6txsiag1" path="res://assets/ui/eye-1-open.png" id="2_nxd8j"]
+[ext_resource type="Texture2D" uid="uid://qup6kfjqvora" path="res://assets/ui/eye-2.png" id="3_aotfy"]
+[ext_resource type="Texture2D" uid="uid://dw57xjrxldhmw" path="res://assets/ui/eye-3.png" id="4_wa7uo"]
+[ext_resource type="Texture2D" uid="uid://c3nmpkoqgc4pm" path="res://assets/ui/eye-4.png" id="5_0jty5"]
+[ext_resource type="Texture2D" uid="uid://du77q1meef3ve" path="res://assets/ui/eye-5-closed.png" id="6_pe0nn"]
+[ext_resource type="Texture2D" uid="uid://dv3bkx58oo76b" path="res://assets/ui/sleep-bar-base.png" id="7_rgg3o"]
+
+[node name="SleepBar" type="CanvasLayer" unique_id=664515770]
+script = ExtResource("1_bfdo6")
+eye_states = Array[Texture2D]([ExtResource("2_nxd8j"), ExtResource("3_aotfy"), ExtResource("4_wa7uo"), ExtResource("5_0jty5"), ExtResource("6_pe0nn")])
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=166947053]
+modulate = Color(0.83137256, 0.20392157, 0.20392157, 1)
+layout_direction = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -115.0
+offset_top = 23.0
+offset_right = 147.0
+offset_bottom = 32.0
+grow_horizontal = 2
+size_flags_vertical = 4
+value = 53.55
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1275415109]
+texture_filter = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -320.0
+offset_bottom = 13.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 7
+
+[node name="base" type="TextureRect" parent="MarginContainer" unique_id=1308153661]
+layout_mode = 2
+texture = ExtResource("7_rgg3o")
+stretch_mode = 3
+
+[node name="eye" type="TextureRect" parent="MarginContainer" unique_id=1234854360]
+layout_mode = 2
+texture = ExtResource("2_nxd8j")
+stretch_mode = 3

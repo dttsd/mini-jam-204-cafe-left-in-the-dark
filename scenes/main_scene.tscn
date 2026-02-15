@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://ty4dgymwidvn" path="res://player_character.tscn" id="1_0f027"]
 [ext_resource type="Script" uid="uid://p6i5h5pl6ktp" path="res://background.gd" id="1_2c62f"]
-[ext_resource type="PackedScene" uid="uid://kfbxeuoxrgii" path="res://main_road.tscn" id="2_671wp"]
+[ext_resource type="PackedScene" uid="uid://kfbxeuoxrgii" path="res://scenes/main_road.tscn" id="2_671wp"]
 [ext_resource type="Texture2D" uid="uid://deq766i1udm3f" path="res://assets/background/bkg_bottom_foliage.png" id="2_hq1ik"]
 [ext_resource type="Texture2D" uid="uid://c6rv6qeypokrj" path="res://assets/background/bkg_bottom_trees.png" id="3_nfk4m"]
 [ext_resource type="Texture2D" uid="uid://cf0axp8otstcv" path="res://assets/background/bkg_top_foliage.png" id="5_7ycvg"]
 [ext_resource type="Texture2D" uid="uid://c663y7xxglot4" path="res://assets/background/bkg_top_trees.png" id="6_wr18j"]
-[ext_resource type="PackedScene" uid="uid://denhhh48d0r1k" path="res://van.tscn" id="9_7ycvg"]
+[ext_resource type="PackedScene" uid="uid://denhhh48d0r1k" path="res://scenes/van.tscn" id="9_7ycvg"]
 [ext_resource type="Script" uid="uid://c15ku48tyddsy" path="res://van.gd" id="9_qwutr"]
 [ext_resource type="Shader" uid="uid://6x0ueofoqah3" path="res://crt_vhs.gdshader" id="9_wr18j"]
 [ext_resource type="Texture2D" uid="uid://r50m3mnax114" path="res://assets/van/headlight_gradient.png" id="10_qwutr"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://1341lecggt0h" path="res://gui.gd" id="15_2jcla"]
 [ext_resource type="PackedScene" uid="uid://dh4i2n6moy6by" path="res://pickups/pickup_beans.tscn" id="15_u0ygc"]
 [ext_resource type="FontFile" uid="uid://dlkejaj4i273h" path="res://assets/ui/tiny5.regular.ttf" id="16_m35m6"]
+[ext_resource type="PackedScene" uid="uid://ffu72d3ks15w" path="res://scenes/sleep_bar.tscn" id="18_bcnxi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qwutr"]
 shader = ExtResource("9_wr18j")
@@ -282,6 +283,8 @@ text = "awake"
 layout_mode = 2
 size_flags_horizontal = 3
 value = 100.0
+
+[node name="SleepBar" parent="CanvasLayer" unique_id=664515770 instance=ExtResource("18_bcnxi")]
 
 [connection signal="timeout" from="World/Van/Timer" to="World/Van" method="_on_timer_timeout"]
 [connection signal="health_changed" from="World/PlayerCharacter" to="World/Van" method="_on_player_character_health_changed"]
