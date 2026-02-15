@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dx73wx5kjcyy8"]
 
 [ext_resource type="PackedScene" uid="uid://ty4dgymwidvn" path="res://player_character.tscn" id="1_0f027"]
-[ext_resource type="Script" uid="uid://p6i5h5pl6ktp" path="res://background.gd" id="1_2c62f"]
 [ext_resource type="PackedScene" uid="uid://kfbxeuoxrgii" path="res://scenes/main_road.tscn" id="2_671wp"]
 [ext_resource type="Texture2D" uid="uid://deq766i1udm3f" path="res://assets/background/bkg_bottom_foliage.png" id="2_hq1ik"]
 [ext_resource type="Texture2D" uid="uid://c6rv6qeypokrj" path="res://assets/background/bkg_bottom_trees.png" id="3_nfk4m"]
@@ -84,8 +83,6 @@ y_sort_enabled = true
 
 [node name="Background" type="Node2D" parent="World" unique_id=61237509]
 texture_filter = 1
-script = ExtResource("1_2c62f")
-velocity = -30.0
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
