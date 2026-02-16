@@ -1,0 +1,324 @@
+[gd_scene format=3 uid="uid://ddmbgq66u2xk3"]
+
+[ext_resource type="Texture2D" uid="uid://drp4nmepkx0mb" path="res://assets/van/van_wheels.png" id="1_8ln24"]
+[ext_resource type="Texture2D" uid="uid://dmklrsis6k7v1" path="res://assets/background/bkg_road.png" id="1_tbmy8"]
+[ext_resource type="Texture2D" uid="uid://cf0axp8otstcv" path="res://assets/background/bkg_top_foliage.png" id="2_lgwnu"]
+[ext_resource type="Texture2D" uid="uid://dwgdygncv86xc" path="res://assets/van/van_body.png" id="2_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://c663y7xxglot4" path="res://assets/background/bkg_top_trees.png" id="3_flqon"]
+[ext_resource type="Texture2D" uid="uid://c5vatcb43dow4" path="res://assets/items/singular_bean.png" id="3_oa1go"]
+[ext_resource type="Script" uid="uid://cprkwifs1loug" path="res://van_front_push_out_of_the_wayer.gd" id="4_tbmy8"]
+[ext_resource type="Script" uid="uid://c15ku48tyddsy" path="res://van.gd" id="5_0o4t1"]
+[ext_resource type="AudioStream" uid="uid://c12vwxysn4hnv" path="res://assets/sfx/loop-car-engine-sound-mor-hbrntvta.wav" id="5_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://r50m3mnax114" path="res://assets/van/headlight_gradient.png" id="6_0k4wn"]
+[ext_resource type="FontFile" uid="uid://dsa165ncuin6x" path="res://assets/ui/lilliput-steps.regular.otf" id="9_lgwnu"]
+[ext_resource type="Texture2D" uid="uid://npbr26v1xufx" path="res://assets/ui/titlefuelled.png" id="10_flqon"]
+[ext_resource type="StyleBox" path="res://assets/ui/buttonstyle.tres" id="11_rcqid"]
+[ext_resource type="Script" uid="uid://c2p1tua13mtiq" path="res://main_menu.gd" id="11_w44g7"]
+
+[sub_resource type="Curve" id="Curve_j5v2v"]
+_limits = [0.0, 1.0, 0.0, 100.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(9.926471, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_lvfqf"]
+offsets = PackedFloat32Array(0, 0.99159664)
+colors = PackedColorArray(0.40392157, 0.40392157, 0.40392157, 0.76862746, 0.40392157, 0.40392157, 0.40392157, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ubcua"]
+gradient = SubResource("Gradient_lvfqf")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Curve" id="Curve_1ax43"]
+_data = [Vector2(0, 1), 0.0, -1.1507165, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0b1ke"]
+curve = SubResource("Curve_1ax43")
+
+[sub_resource type="Curve" id="Curve_lvfqf"]
+_data = [Vector2(0, 0), 0.0, 3.8980126, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ubcua"]
+curve = SubResource("Curve_lvfqf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ss4g1"]
+particle_flag_disable_z = true
+direction = Vector3(-0.5, -1, 0)
+spread = 0.0
+initial_velocity_min = 31.01
+initial_velocity_max = 31.01
+gravity = Vector3(0, 0, 0)
+damping_min = 14.695001
+damping_max = 14.695001
+scale_curve = SubResource("CurveTexture_ubcua")
+alpha_curve = SubResource("CurveTexture_0b1ke")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6cji5"]
+size = Vector2(96, 49)
+
+[sub_resource type="Animation" id="Animation_8opdr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VanBody:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_lvfqf"]
+resource_name = "van_bumpy"
+length = 1.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VanBody:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6333333, 1.2333333),
+"transitions": PackedFloat32Array(1, 1.464086, 1),
+"update": 0,
+"values": [Vector2(0, 2), Vector2(0, 1), Vector2(0, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ubcua"]
+_data = {
+&"RESET": SubResource("Animation_8opdr"),
+&"van_bumpy": SubResource("Animation_lvfqf")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8opdr"]
+size = Vector2(8, 49)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ax43"]
+radius = 45.0
+height = 118.0
+
+[sub_resource type="Gradient" id="Gradient_wr18j"]
+offsets = PackedFloat32Array(0.1092437, 0.29411766, 1)
+colors = PackedColorArray(0.99999994, 0.93077266, 0.8048288, 1, 0.7704748, 0.59060067, 0.5188266, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iotk1"]
+gradient = SubResource("Gradient_wr18j")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w44g7"]
+radius = 207.61743
+
+[sub_resource type="Theme" id="Theme_1ajci"]
+default_font = ExtResource("9_lgwnu")
+default_font_size = 18
+
+[node name="Control" type="Node" unique_id=430263301]
+
+[node name="CanvasLayer" type="Node2D" parent="." unique_id=2038132317]
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer" unique_id=1861681704]
+texture_filter = 1
+scale = Vector2(3, 3)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Node2D" unique_id=1086240446]
+position = Vector2(0, 10)
+scale = Vector2(2, 2)
+texture = ExtResource("1_tbmy8")
+centered = false
+offset = Vector2(0, -48)
+
+[node name="Parallax2D" type="Parallax2D" parent="CanvasLayer/Node2D" unique_id=541356019]
+scroll_scale = Vector2(0, 0)
+scroll_offset = Vector2(0, -85)
+repeat_size = Vector2(720, 0)
+autoscroll = Vector2(-6, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Node2D/Parallax2D" unique_id=1808541432]
+scale = Vector2(2, 2)
+texture = ExtResource("2_lgwnu")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Node2D/Parallax2D" unique_id=1820043259]
+scale = Vector2(2, 2)
+texture = ExtResource("3_flqon")
+centered = false
+offset = Vector2(0, 14)
+
+[node name="Van" type="StaticBody2D" parent="CanvasLayer/Node2D" unique_id=1415347441]
+position = Vector2(59.666668, 57)
+script = ExtResource("5_0o4t1")
+max_speed = 0.0
+on_menu = true
+speed = 0.0
+fuel_curve_speed = SubResource("Curve_j5v2v")
+
+[node name="VanWheels" type="Sprite2D" parent="CanvasLayer/Node2D/Van" unique_id=1045507201]
+texture_filter = 1
+position = Vector2(0, 4)
+scale = Vector2(2, 2)
+texture = ExtResource("1_8ln24")
+
+[node name="VanBody" type="Sprite2D" parent="CanvasLayer/Node2D/Van" unique_id=1760046270]
+texture_filter = 1
+position = Vector2(0, 4)
+scale = Vector2(2, 2)
+texture = ExtResource("2_rtw2f")
+
+[node name="Exhaust" type="Polygon2D" parent="CanvasLayer/Node2D/Van/VanBody" unique_id=1820772691]
+position = Vector2(6.5, -0.5)
+color = Color(0.2051174, 0.20511746, 0.20511737, 1)
+polygon = PackedVector2Array(-34, 13, -31, 13, -31, 15.5, -34, 15.5)
+
+[node name="SmokeParticles" type="GPUParticles2D" parent="CanvasLayer/Node2D/Van/VanBody/Exhaust" unique_id=377599443]
+position = Vector2(-34, 14)
+texture = SubResource("GradientTexture2D_ubcua")
+lifetime = 2.0599999999999996
+speed_scale = 0.25
+process_material = SubResource("ParticleProcessMaterial_ss4g1")
+
+[node name="SingularBean" type="Sprite2D" parent="CanvasLayer/Node2D/Van/VanBody" unique_id=2075831256]
+texture_filter = 1
+position = Vector2(-6.5, -13)
+texture = ExtResource("3_oa1go")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Node2D/Van" unique_id=541239841]
+position = Vector2(-1, 23.5)
+shape = SubResource("RectangleShape2D_6cji5")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Node2D/Van" unique_id=1198353702]
+libraries/ = SubResource("AnimationLibrary_ubcua")
+autoplay = &"van_bumpy"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CanvasLayer/Node2D/Van" unique_id=333917233]
+polygon = PackedVector2Array(-49, 48, 34, 48, 54, 23, 40, -1, -49, -1)
+
+[node name="VanFrontPushOutOfTheWayer" type="Area2D" parent="CanvasLayer/Node2D/Van" unique_id=1375861234]
+script = ExtResource("4_tbmy8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Node2D/Van/VanFrontPushOutOfTheWayer" unique_id=1268736988]
+position = Vector2(51, 23.5)
+shape = SubResource("RectangleShape2D_8opdr")
+
+[node name="LoopCarEngineSoundMorHbrntvta" type="AudioStreamPlayer2D" parent="CanvasLayer/Node2D/Van" unique_id=1317596876]
+position = Vector2(32, 22)
+stream = ExtResource("5_jk1qb")
+volume_db = -9.706
+autoplay = true
+panning_strength = 5.0
+
+[node name="InteractArea" type="Area2D" parent="CanvasLayer/Node2D/Van" unique_id=216955026]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Node2D/Van/InteractArea" unique_id=1118636468]
+position = Vector2(0, 16)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_1ax43")
+
+[node name="RadiusLight" type="PointLight2D" parent="CanvasLayer/Node2D/Van" unique_id=1219691891]
+energy = 0.4
+range_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_iotk1")
+texture_scale = 0.9
+
+[node name="HeadLights" type="PointLight2D" parent="CanvasLayer/Node2D/Van" unique_id=1001847881]
+position = Vector2(35, 8)
+rotation = 0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+shadow_enabled = true
+texture = ExtResource("6_0k4wn")
+metadata/_edit_lock_ = true
+
+[node name="HeadLightsPost" type="PointLight2D" parent="CanvasLayer/Node2D/Van" unique_id=1752559565]
+position = Vector2(35, 8)
+rotation = 0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+range_item_cull_mask = 2
+shadow_item_cull_mask = 2
+texture = ExtResource("6_0k4wn")
+metadata/_edit_lock_ = true
+
+[node name="LightAreaChecker" type="Area2D" parent="CanvasLayer/Node2D/Van" unique_id=1974319682]
+
+[node name="CollisionCircle2D" type="CollisionShape2D" parent="CanvasLayer/Node2D/Van/LightAreaChecker" unique_id=104118361]
+visible = false
+shape = SubResource("CircleShape2D_w44g7")
+
+[node name="Timer" type="Timer" parent="CanvasLayer/Node2D/Van" unique_id=1003316025]
+autostart = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="CanvasLayer/Node2D" unique_id=1526179404]
+scale = Vector2(0.33333334, 0.33333334)
+color = Color(0.005266423, 0.012487993, 0.017322028, 1)
+
+[node name="GUILayer" type="CanvasLayer" parent="." unique_id=1126380121]
+script = ExtResource("11_w44g7")
+
+[node name="Control" type="Control" parent="GUILayer" unique_id=1334006560]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_1ajci")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUILayer/Control" unique_id=1388978820]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 65
+theme_override_constants/margin_right = 51
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUILayer/Control/MarginContainer" unique_id=1870633637]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 24
+
+[node name="TextureRect" type="TextureRect" parent="GUILayer/Control/MarginContainer/VBoxContainer" unique_id=296809666]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("10_flqon")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUILayer/Control/MarginContainer/VBoxContainer" unique_id=619220693]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 14
+
+[node name="BeginButton" type="Button" parent="GUILayer/Control/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1427529230]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("11_rcqid")
+text = "begin"
+
+[node name="CreditsButton" type="Button" parent="GUILayer/Control/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1346021590]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("11_rcqid")
+text = "credits"
+
+[connection signal="body_entered" from="CanvasLayer/Node2D/Van/VanFrontPushOutOfTheWayer" to="CanvasLayer/Node2D/Van/VanFrontPushOutOfTheWayer" method="_on_body_entered"]
+[connection signal="timeout" from="CanvasLayer/Node2D/Van/Timer" to="CanvasLayer/Node2D/Van" method="_on_timer_timeout"]
+[connection signal="mouse_entered" from="GUILayer/Control/MarginContainer/VBoxContainer/VBoxContainer/BeginButton" to="GUILayer" method="_on_begin_button_mouse_entered"]
+[connection signal="mouse_exited" from="GUILayer/Control/MarginContainer/VBoxContainer/VBoxContainer/BeginButton" to="GUILayer" method="_on_begin_button_mouse_exited"]
+[connection signal="pressed" from="GUILayer/Control/MarginContainer/VBoxContainer/VBoxContainer/BeginButton" to="GUILayer" method="_on_begin_button_pressed"]
+[connection signal="pressed" from="GUILayer/Control/MarginContainer/VBoxContainer/VBoxContainer/CreditsButton" to="GUILayer" method="_on_credits_button_pressed"]

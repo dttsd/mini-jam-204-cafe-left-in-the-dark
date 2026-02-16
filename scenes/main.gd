@@ -24,3 +24,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	score += 1
 	pass
+
+
+func _on_player_character_health_changed(health: float) -> void:
+	if health <= 0:
+		
+		pass
+	pass # Replace with function body.

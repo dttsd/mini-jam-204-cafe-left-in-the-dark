@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://edymhyl225cs"]
+
+[ext_resource type="FontFile" uid="uid://dsa165ncuin6x" path="res://assets/ui/lilliput-steps.regular.otf" id="1_hdmo1"]
+[ext_resource type="Script" uid="uid://maceuv6dwn4o" path="res://pause_menu.gd" id="1_nwcfo"]
+
+[sub_resource type="Theme" id="Theme_nwcfo"]
+default_font = ExtResource("1_hdmo1")
+default_font_size = 18
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=778719760]
+process_mode = 3
+script = ExtResource("1_nwcfo")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1280902175]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6313726)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1802468945]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -63.5
+offset_right = 62.0
+offset_bottom = 63.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_nwcfo")
+theme_override_constants/separation = 35
+
+[node name="Label" type="Label" parent="VBoxContainer2" unique_id=196499947]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "paused"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2" unique_id=290339750]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer2/VBoxContainer" unique_id=898418028]
+layout_mode = 2
+text = "continue"
+icon_alignment = 1
+
+[node name="QuitButton" type="Button" parent="VBoxContainer2/VBoxContainer" unique_id=1979525747]
+layout_mode = 2
+text = "quit"
+icon_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

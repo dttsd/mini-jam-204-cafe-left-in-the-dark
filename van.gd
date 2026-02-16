@@ -1,5 +1,9 @@
 extends StaticBody2D
 
+@export var max_speed:float = 30
+
+@export var on_menu:bool = false
+
 @export var speed: float = 20:
 	get:
 		return Global.van_speed
@@ -33,9 +37,11 @@ func _process(delta: float) -> void:
 	pass
 	
 func decrease_van_stats(delta: float):
+	if on_menu:
+		return
 	
 	Global.van_fuel -= van_fuel_consumption * delta
-	speed = fuel_curve_speed.sample(Global.van_fuel) * 30
+	speed = fuel_curve_speed.sample(Global.van_fuel) * max_speed
 	
 	# turn engine sound off if below set speed
 	if speed < 1:

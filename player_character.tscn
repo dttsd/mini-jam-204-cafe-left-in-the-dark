@@ -6,9 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://cqfd0xuexa365" path="res://assets/player/PlayerIdle_-1.png" id="4_he2na"]
 [ext_resource type="Texture2D" uid="uid://2f4lu4ccg1j7" path="res://assets/player/PlayerIdle_-2.png" id="5_p3c78"]
 [ext_resource type="Texture2D" uid="uid://bj5460euf165g" path="res://assets/player/PlayerWalk-1.png" id="6_eh3ko"]
+[ext_resource type="Texture2D" uid="uid://bpndu3031somx" path="res://assets/player/PlayerSleep-1.png" id="6_ha3ud"]
 [ext_resource type="Texture2D" uid="uid://bxilhvk4ptw67" path="res://assets/player/PlayerWalk-3.png" id="7_bgme8"]
+[ext_resource type="Texture2D" uid="uid://eixvi8y767kp" path="res://assets/player/PlayerSleep-2.png" id="7_bi50n"]
 [ext_resource type="Texture2D" uid="uid://c38ovgt3qideo" path="res://assets/player/PlayerWalk-2.png" id="8_g1g7m"]
+[ext_resource type="Texture2D" uid="uid://wb0g2kfkefgm" path="res://assets/player/PlayerSleep-3.png" id="8_od4g1"]
+[ext_resource type="Texture2D" uid="uid://cv5dtjw2ly2qp" path="res://assets/player/PlayerSleep-4.png" id="9_43oxn"]
 [ext_resource type="Texture2D" uid="uid://cbrdhk3jq7rkm" path="res://assets/player/PlayerWalkAWAY-2.png" id="9_p3c78"]
+[ext_resource type="Texture2D" uid="uid://iexbpm38qmy1" path="res://assets/player/PlayerSleep-5.png" id="10_1oirj"]
 [ext_resource type="Texture2D" uid="uid://ba3r3fnjx0r8t" path="res://assets/player/PlayerWalkAWAY-1.png" id="10_eh3ko"]
 [ext_resource type="Texture2D" uid="uid://gdh7o06t233u" path="res://assets/player/PlayerWalkAWAY-3.png" id="11_bgme8"]
 
@@ -42,6 +47,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("6_ha3ud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_bi50n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_od4g1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_43oxn")
+}],
+"loop": false,
+"name": &"FallingAsleep",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("4_he2na")
 }, {
 "duration": 1.0,
@@ -56,6 +78,17 @@ animations = [{
 "loop": true,
 "name": &"Idle",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_43oxn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_1oirj")
+}],
+"loop": true,
+"name": &"Sleeping",
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -117,9 +150,8 @@ light_mask = 2
 texture_filter = 1
 position = Vector2(0, -8.5)
 sprite_frames = SubResource("SpriteFrames_4yf86")
-animation = &"Walk"
+animation = &"Sleeping"
 autoplay = "Idle"
-frame_progress = 0.18470447
 offset = Vector2(-0.5, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1782037744]

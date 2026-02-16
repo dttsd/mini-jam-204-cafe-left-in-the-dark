@@ -204,11 +204,10 @@ position = Vector2(0, -72.5)
 shape = SubResource("RectangleShape2D_m35m6")
 debug_color = Color(0.66943777, 0.49055326, 0.39097354, 0.41960785)
 
-[node name="PlayerCharacter" parent="World" unique_id=510971326 node_paths=PackedStringArray("item_spawner", "van", "light_area") instance=ExtResource("1_0f027")]
+[node name="PlayerCharacter" parent="World" unique_id=510971326 node_paths=PackedStringArray("van", "light_area") instance=ExtResource("1_0f027")]
 y_sort_enabled = true
 position = Vector2(295, 249)
 holding_item_speed_modifer = 0.6
-item_spawner = NodePath("../ItemSpawner")
 van = NodePath("../Van")
 light_area = NodePath("../Van/LightAreaChecker")
 

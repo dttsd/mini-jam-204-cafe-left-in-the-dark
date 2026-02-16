@@ -8,6 +8,10 @@ extends CharacterBody2D
 @export var holding_item_speed_modifer:float = 0.5
 const JUMP_VELOCITY = -400.0
 
+@export var item_spawner: Node2D
+
+signal player_died
+
 var holding_item: bool = false:
 	set(value):
 		holding_item = value
@@ -15,6 +19,8 @@ var holding_item: bool = false:
 
 @export var van: StaticBody2D
 @onready var van_interact_area:Area2D = van.get_node("InteractArea")
+
+var asleep = false
 
 @export var light_area: Area2D
 @export var darkness_damage: float = 20
@@ -30,7 +36,36 @@ signal health_changed(health: float)
 
 @onready var animated_sprite = $AnimatedSprite2D
 
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	player_died.connect(_on_player_death)
+	pass # Replace with function body.
+
+func _on_sleep_animation_finished():
+	if animated_sprite.animation == "FallingAsleep":
+		animated_sprite.play("Sleeping")
+		van.max_speed = 50
+		player_died.emit()
+	pass
+	
+func _on_player_death():
+	# happens after player fall asleep finished
+	z_index = 100
+	pass
+
 func _physics_process(delta: float) -> void:
+	if asleep:
+		return
+	
+	# halt if asleep
+	if Global.awakeness <= 0:
+		asleep = true
+		drop_item()
+		# play falling asleep then loop sleeping after
+		animated_sprite.play("FallingAsleep")
+		animated_sprite.connect("animation_finished", _on_sleep_animation_finished)
+		return
+	
 	if holding_item == true:
 		# check if overlapping van, and add item
 		if $GrabArea.overlaps_area(van_interact_area):
@@ -42,7 +77,42 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	handle_light_damage(delta)
 	#print("player speed %s max speed %s" % [speed, max_speed])
+
+func pickup_item(itemNode: ItemComponent):
+	# sanity check
+	if holding_item == true:
+		print("can't pickup new item! hands full")
+		return
 	
+	var tween = get_tree().create_tween()
+	tween.tween_property(itemNode, "position", Vector2.ZERO, .25)
+	#tween.tween_callback(func(): print("tween complete"))
+
+	itemNode.reparent($Hands)
+	holding_item = true
+	#closest_item.rotate(5)
+	
+	pass
+
+func drop_item():
+	if holding_item == false:
+		push_error("can't drop item, holding_item == false!!")
+		return
+	
+	# reparent item in hands to itemspawner
+	# get item reference from hands
+	var item: Area2D = $Hands.get_child(0)
+	
+	if not item:
+		push_error("can't drop item, no item node in hands!")
+		return
+	
+	item.reparent(item_spawner)
+	
+	# free hand
+	holding_item = false
+	pass
+
 func add_item_to_van():
 	# get item reference from hands
 	var item: Area2D = $Hands.get_child(0)
@@ -50,7 +120,9 @@ func add_item_to_van():
 	
 	# move item to van
 	item.reparent(van)
-	
+	# remove item from item group to prevent re-grabbing and null error when queue_free later
+	item.remove_from_group("item")
+
 	
 	
 	var tween = get_tree().create_tween()
@@ -85,6 +157,7 @@ func _input(event: InputEvent) -> void:
 		# print("player pressed ", event.as_text())
 		
 		if holding_item:
+			drop_item()
 			return
 		
 		# check if any items are touching area
@@ -103,22 +176,7 @@ func _input(event: InputEvent) -> void:
 					closest_dist_sqrd = dist
 					closest_item = item
 			
-			
-			var tween = get_tree().create_tween()
-			tween.tween_property(closest_item, "position", Vector2.ZERO, .25)
-			#tween.tween_callback(func(): print("tween complete"))
-
-			closest_item.reparent($Hands)
-			
-			# remove item from item group to prevent re-grabbing and null error when queue_free later
-			closest_item.remove_from_group("item")
-			
-			holding_item = true
-			#closest_item.rotate(5)
-			
-		
-		
-
+			pickup_item(closest_item)
 
 func get_player_input() -> void:
 	var vector: Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
