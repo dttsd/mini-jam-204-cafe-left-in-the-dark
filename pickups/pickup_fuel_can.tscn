@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://dusbglsitf3v2" path="res://assets/items/fuel_can.png" id="1_bvqji"]
 [ext_resource type="Script" uid="uid://cm4s7i6xge2vs" path="res://pickups/pickup_fuel_can.gd" id="1_ys5xq"]
-[ext_resource type="Script" uid="uid://bloiee6udyis7" path="res://pickups/item_component.gd" id="2_r64l1"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bvqji"]
 cull_mode = 2
@@ -28,7 +27,3 @@ occluder = SubResource("OccluderPolygon2D_bvqji")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1571329846]
 position = Vector2(0, -10)
 shape = SubResource("CircleShape2D_bvqji")
-
-[node name="ItemComponent" type="Node2D" parent="." unique_id=2073854144]
-position = Vector2(0, -10)
-script = ExtResource("2_r64l1")

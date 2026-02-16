@@ -1,13 +1,17 @@
 extends StaticBody2D
 
-@export var speed: float = 20
+@export var speed: float = 20:
+	get:
+		return Global.van_speed
+	set(value):
+		Global.van_speed = value
 
 @onready var timer := $Timer
 @onready var radiusLight := $RadiusLight
 @onready var headLights := $HeadLights
 @onready var engine_sound: AudioStreamPlayer2D = self.get_children().filter(func(el): return el is AudioStreamPlayer2D)[0]
 
-@export var van_fuel_consumption:float = 5
+@export var van_fuel_consumption:float = 2.5
 
 @onready var interactArea: Area2D = $InteractArea
 @onready var smoke_emitter:GPUParticles2D = self.find_child("SmokeParticles") 

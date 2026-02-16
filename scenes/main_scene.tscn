@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dx73wx5kjcyy8"]
 
 [ext_resource type="PackedScene" uid="uid://ty4dgymwidvn" path="res://player_character.tscn" id="1_0f027"]
+[ext_resource type="Script" uid="uid://b882meis5u5b8" path="res://scenes/main.gd" id="1_bcnxi"]
 [ext_resource type="PackedScene" uid="uid://kfbxeuoxrgii" path="res://scenes/main_road.tscn" id="2_671wp"]
 [ext_resource type="Texture2D" uid="uid://deq766i1udm3f" path="res://assets/background/bkg_bottom_foliage.png" id="2_hq1ik"]
 [ext_resource type="Texture2D" uid="uid://c6rv6qeypokrj" path="res://assets/background/bkg_bottom_trees.png" id="3_nfk4m"]
@@ -77,6 +78,7 @@ default_font = ExtResource("16_m35m6")
 default_font_size = 28
 
 [node name="MainScene" type="Node" unique_id=1984564942]
+script = ExtResource("1_bcnxi")
 
 [node name="World" type="Node2D" parent="." unique_id=608759412]
 y_sort_enabled = true
@@ -181,7 +183,7 @@ shape = SubResource("CircleShape2D_qwutr")
 autostart = true
 
 [node name="SpawnArea2D" type="Area2D" parent="World/Van" unique_id=741415238]
-position = Vector2(360, 0)
+position = Vector2(363, 0)
 monitoring = false
 monitorable = false
 
@@ -203,7 +205,7 @@ debug_color = Color(0.66943777, 0.49055326, 0.39097354, 0.41960785)
 
 [node name="PlayerCharacter" parent="World" unique_id=510971326 node_paths=PackedStringArray("van", "light_area") instance=ExtResource("1_0f027")]
 y_sort_enabled = true
-position = Vector2(414, 204)
+position = Vector2(295, 249)
 holding_item_speed_modifer = 0.6
 van = NodePath("../Van")
 light_area = NodePath("../Van/LightAreaChecker")
@@ -225,16 +227,17 @@ script = ExtResource("12_671wp")
 script = ExtResource("13_mo76n")
 current_items = Array[PackedScene]([ExtResource("15_u0ygc"), ExtResource("14_42l1d")])
 spawn_area = NodePath("../Van/SpawnArea2D")
-spawn_interval_min = 1
-spawn_interval_max = 3
 
 [node name="Timer" type="Timer" parent="World/ItemSpawner" unique_id=254761191]
 
 [node name="PickupFuel" parent="World" unique_id=1040813394 instance=ExtResource("14_42l1d")]
-position = Vector2(393, 225)
+position = Vector2(385, 234)
 
 [node name="PickupFuel2" parent="World" unique_id=136822418 instance=ExtResource("14_42l1d")]
-position = Vector2(447, 228)
+position = Vector2(464, 234)
+
+[node name="ItemBeans" parent="World" unique_id=793541796 instance=ExtResource("15_u0ygc")]
+position = Vector2(424, 233)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=393438066 node_paths=PackedStringArray("fuel_bar", "awake_bar")]
 script = ExtResource("15_2jcla")
@@ -259,8 +262,8 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -27.0
-offset_right = 38.0
+offset_top = -33.0
+offset_right = 445.0
 grow_vertical = 0
 
 [node name="Label" type="Label" parent="CanvasLayer/GUI/HBoxContainer" unique_id=350140762]
@@ -280,6 +283,10 @@ text = "awake"
 layout_mode = 2
 size_flags_horizontal = 3
 value = 100.0
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/GUI/HBoxContainer" unique_id=1946383014]
+layout_mode = 2
+text = "score"
 
 [node name="SleepBar" parent="CanvasLayer" unique_id=664515770 instance=ExtResource("18_bcnxi")]
 

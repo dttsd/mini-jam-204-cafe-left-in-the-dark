@@ -11,6 +11,10 @@ signal awake_changed
 	set(value):
 		awakeness = clamp(value,0,100)
 		awake_changed.emit(value)
+		
+@export var van_speed: float:
+	set(value):
+		van_speed = value
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

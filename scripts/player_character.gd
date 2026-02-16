@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 	get_player_input()
 	move_and_slide()
 	handle_light_damage(delta)
-	print("player speed %s max speed %s" % [speed, max_speed])
+	#print("player speed %s max speed %s" % [speed, max_speed])
 	
 func add_item_to_van():
 	# get item reference from hands
@@ -60,17 +60,18 @@ func add_item_to_van():
 
 	# handle what item type
 	print("item class: ", item.get_class())
-	match item.get_script().get_global_name():
-		"item_beans":
-			print("BEANS!")
-			# add to bean value
-			Global.awakeness += 30
-		"item_fuel_can":
-			print("FUEL!")
-			# increment van fuel
-			Global.van_fuel += 30
-		_:
-			print("UNKNOWN ITEM!")
+	#match item.get_script().get_global_name():
+		#"item_beans":
+			#print("BEANS!")
+			## add to bean value
+			#Global.awakeness += 30
+		#"item_fuel_can":
+			#print("FUEL!")
+			## increment van fuel
+			#Global.van_fuel += 30
+		#_:
+			#print("UNKNOWN ITEM!")
+	item.use()
 	
 
 	
@@ -81,7 +82,7 @@ func add_item_to_van():
 func _input(event: InputEvent) -> void:
 	# pressed e or space or enter
 	if event.is_action_pressed("ui_accept"):
-		print("player pressed ", event.as_text())
+		# print("player pressed ", event.as_text())
 		
 		if holding_item:
 			return

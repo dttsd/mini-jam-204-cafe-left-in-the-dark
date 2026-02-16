@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		var cbody: CharacterBody2D = body
-		print(body)
+		# print(body)
 		body.velocity.x = 4000
 		print("Applying force to: ", body.name, " vel=", body.velocity)
 		body.get_last_motion()

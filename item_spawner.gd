@@ -3,29 +3,41 @@ extends Node2D
 @export var current_items : Array[PackedScene] = []
 @export var spawn_area: Area2D
 #@export_subgroup("Main Category")
-@export_range(0,30) var spawn_interval_min := 5
-@export_range(0,30) var spawn_interval_max := 10
+@export_range(0,999) var spawn_interval_min := 50
+@export_range(0,999) var spawn_interval_max := 150
+
+## distance travelled by van before spawning next item
+@export var spawn_dist_frequency: float = 100
+
+var dist_until_next_spawn: float = 0
 
 @onready var spawn_area_shapes = spawn_area.get_children().filter(func(el): return el is CollisionShape2D)
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	spawn_item()
-	$Timer.wait_time = spawn_interval_min
-	$Timer.start()
+	#spawn_item()
+	#$Timer.wait_time = spawn_interval_min
+	#$Timer.start()
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if dist_until_next_spawn <= 0:
+		dist_until_next_spawn = randf_range(spawn_interval_min, spawn_interval_max)
+		spawn_item()
+		print("spawned!")
+	dist_until_next_spawn -= delta * Global.van_speed
+	#print(dist_until_next_spawn)
+	
 	pass
 
 
 func _on_timer_timeout() -> void:
-	spawn_item()
-	$Timer.wait_time = randf_range(spawn_interval_min, spawn_interval_max)
-	print("spawning next can in %f seconds" % [$Timer.wait_time])
+	#spawn_item()
+	#$Timer.wait_time = randf_range(spawn_interval_min, spawn_interval_max)
+	# print("spawning next can in %f seconds" % [$Timer.wait_time])
 	pass # Replace with function body.
 	
 func spawn_item():
@@ -34,7 +46,7 @@ func spawn_item():
 		return
 
 	# choose random collision shape2d within spawnarea
-	print(spawn_area_shapes)
+	# print(spawn_area_shapes)
 	var collision_shape: CollisionShape2D = spawn_area_shapes.pick_random()
 	
 	#var collision_shape = spawn_area.get_node("CollisionShape2D") as CollisionShape2D
@@ -57,4 +69,4 @@ func spawn_item():
 	
 	item.position = pos
 	add_child(item)
-	print("spawned ", item, item.position, item.global_position, " at ", pos)
+	print("spawned ", item.get_script().get_global_name(), item.global_position, " at ", pos)

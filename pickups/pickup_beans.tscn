@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://tfdh1rwg8d53" path="res://pickups/pickup_beans.gd" id="1_eskiq"]
 [ext_resource type="Texture2D" uid="uid://d2hcltae8ruth" path="res://assets/items/bag_o_beans.png" id="2_eskiq"]
-[ext_resource type="Script" uid="uid://bloiee6udyis7" path="res://pickups/item_component.gd" id="3_506w5"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_bvqji"]
 cull_mode = 2
@@ -28,7 +27,3 @@ occluder = SubResource("OccluderPolygon2D_bvqji")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1571329846]
 position = Vector2(0, -10)
 shape = SubResource("CircleShape2D_bvqji")
-
-[node name="ItemComponent" type="Node2D" parent="." unique_id=2073854144]
-position = Vector2(0, -10)
-script = ExtResource("3_506w5")
