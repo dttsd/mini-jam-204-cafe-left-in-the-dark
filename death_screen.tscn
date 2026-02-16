@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://dru55wtonqp4w"]
+
+[ext_resource type="Script" uid="uid://cw0bc8b4oc8l2" path="res://death_screen.gd" id="1_ex68u"]
+[ext_resource type="FontFile" uid="uid://dsa165ncuin6x" path="res://assets/ui/lilliput-steps.regular.otf" id="1_if853"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ex68u"]
+
+[sub_resource type="Theme" id="Theme_6bi5g"]
+default_font = ExtResource("1_if853")
+default_font_size = 18
+
+[node name="death_screen" type="Control" unique_id=1345299950]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ex68u")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1999590639]
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1247296929]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ex68u")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=640968209]
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -67.0
+offset_right = 200.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 28
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/VBoxContainer" unique_id=563596699]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/VBoxContainer/VBoxContainer" unique_id=1281404610]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+bbcode_enabled = true
+text = "[wave amp=20 freq=10]you have been [color=darkred]swallowed[/color][/wave]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/VBoxContainer" unique_id=482822868]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="BtnTryAgain" type="Button" parent="CanvasLayer/VBoxContainer/VBoxContainer2" unique_id=988856753]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "try again"
+
+[node name="BtnMainMenu" type="Button" parent="CanvasLayer/VBoxContainer/VBoxContainer2" unique_id=1780111296]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "return to main menu"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1469792144]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = SubResource("Theme_6bi5g")
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 30
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer" unique_id=1570279764]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 0.6156863)
+theme_override_font_sizes/font_size = 13
+text = "time left until salvation: [time]"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/VBoxContainer2/BtnTryAgain" to="." method="_on_btn_try_again_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/VBoxContainer2/BtnMainMenu" to="." method="_on_btn_main_menu_pressed"]
