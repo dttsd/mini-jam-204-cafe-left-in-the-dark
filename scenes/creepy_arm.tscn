@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://d3si6mgcuk4f2"]
+
+[ext_resource type="Texture2D" uid="uid://pm6yuwyfxlgk" path="res://assets/arm.png" id="1_5o65a"]
+
+[sub_resource type="Gradient" id="Gradient_5o65a"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w1eds"]
+gradient = SubResource("Gradient_5o65a")
+
+[node name="Arm" type="Node2D" unique_id=1152759627]
+texture_filter = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=131823442]
+position = Vector2(-168, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("1_5o65a")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D" unique_id=1177488849]
+position = Vector2(-188.49998, 1)
+scale = Vector2(3.4299908, 0.03)
+texture = SubResource("GradientTexture2D_w1eds")

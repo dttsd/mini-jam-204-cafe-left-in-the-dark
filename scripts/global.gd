@@ -7,7 +7,7 @@ signal fuel_changed
 		fuel_changed.emit(value)
 
 signal awake_changed
-@export var awakeness: float = 100:
+@export var awakeness: float = 10:
 	set(value):
 		awakeness = clamp(value,0,100)
 		awake_changed.emit(value)

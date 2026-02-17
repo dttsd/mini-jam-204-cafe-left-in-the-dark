@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="mini-jam-204-cafe"
-run/main_scene="uid://dx73wx5kjcyy8"
+run/main_scene="uid://ddmbgq66u2xk3"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://c5vatcb43dow4"
 

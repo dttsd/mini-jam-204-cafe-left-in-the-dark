@@ -78,7 +78,7 @@ size = Vector2(23, 73)
 
 [sub_resource type="Curve2D" id="Curve2D_xdqt8"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -110, -115, 0, 0, 0, 0, 729, -107, 0, 0, 0, 0, 742, 443, 0, 0, 0, 0, -105, 430, 0, 0, 0, 0, -110, -115)
+"points": PackedVector2Array(0, 0, 0, 0, -29, -28, 0, 0, 0, 0, 674, -31, 0, 0, 0, 0, 671, 392, 0, 0, 0, 0, -25, 389, 0, 0, 0, 0, -29, -28)
 }
 point_count = 5
 
@@ -212,38 +212,22 @@ position = Vector2(0, -72.5)
 shape = SubResource("RectangleShape2D_m35m6")
 debug_color = Color(0.66943777, 0.49055326, 0.39097354, 0.41960785)
 
-[node name="PlayerCharacter" parent="World" unique_id=510971326 node_paths=PackedStringArray("item_spawner", "death_arms_node", "van", "light_area") instance=ExtResource("1_0f027")]
+[node name="PlayerCharacter" parent="World" unique_id=510971326 node_paths=PackedStringArray("item_spawner", "van", "light_area") instance=ExtResource("1_0f027")]
 y_sort_enabled = true
 position = Vector2(295, 249)
 holding_item_speed_modifer = 0.6
 item_spawner = NodePath("../ItemSpawner")
-death_arms_node = NodePath("Camera2D/DeathArms")
 van = NodePath("../Van")
 light_area = NodePath("../Van/LightAreaChecker")
 
 [node name="Camera2D" type="Camera2D" parent="World/PlayerCharacter" unique_id=341559836]
+visible = false
 scale = Vector2(0.5, 0.5)
 limit_left = -100
 limit_top = 0
 limit_bottom = 400
 position_smoothing_enabled = true
 metadata/_edit_lock_ = true
-
-[node name="DeathArms" type="Node2D" parent="World/PlayerCharacter/Camera2D" unique_id=628767423 node_paths=PackedStringArray("player")]
-z_index = 30
-z_as_relative = false
-position = Vector2(-295, -249)
-script = ExtResource("16_k6f3i")
-player = NodePath("../..")
-
-[node name="Arm" parent="World/PlayerCharacter/Camera2D/DeathArms" unique_id=1119822387 instance=ExtResource("17_xdqt8")]
-
-[node name="Path2D" type="Path2D" parent="World/PlayerCharacter/Camera2D/DeathArms" unique_id=1723736089]
-curve = SubResource("Curve2D_xdqt8")
-
-[node name="ArmSpawnLocation" type="PathFollow2D" parent="World/PlayerCharacter/Camera2D/DeathArms/Path2D" unique_id=1279461571]
-position = Vector2(-110, -115)
-rotation = 0.009534873
 
 [node name="CanvasModulate" type="CanvasModulate" parent="World" unique_id=707682203]
 color = Color(0, 0, 0, 1)
@@ -264,6 +248,19 @@ position = Vector2(464, 234)
 
 [node name="ItemBeans" parent="World" unique_id=793541796 instance=ExtResource("15_u0ygc")]
 position = Vector2(424, 233)
+
+[node name="DeathArms" type="Node2D" parent="World" unique_id=628767423 node_paths=PackedStringArray("player")]
+script = ExtResource("16_k6f3i")
+player = NodePath("../PlayerCharacter")
+
+[node name="Arm" parent="World/DeathArms" unique_id=1119822387 instance=ExtResource("17_xdqt8")]
+
+[node name="Path2D" type="Path2D" parent="World/DeathArms" unique_id=1723736089]
+curve = SubResource("Curve2D_xdqt8")
+
+[node name="ArmSpawnLocation" type="PathFollow2D" parent="World/DeathArms/Path2D" unique_id=1279461571]
+position = Vector2(-29, -28)
+rotation = -0.0042673997
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=393438066 node_paths=PackedStringArray("fuel_bar", "awake_bar")]
 script = ExtResource("15_2jcla")

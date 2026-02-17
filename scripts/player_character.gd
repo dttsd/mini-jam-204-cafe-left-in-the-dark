@@ -9,6 +9,7 @@ extends CharacterBody2D
 const JUMP_VELOCITY = -400.0
 
 @export var item_spawner: Node2D
+@export var death_arms_node: Node2D
 
 signal player_died
 
@@ -51,7 +52,18 @@ func _on_sleep_animation_finished():
 func _on_player_death():
 	# happens after player fall asleep finished
 	z_index = 100
+	
+	death_arms_node.play_cutscene()
+	
+	var canvas:CanvasModulate = $"../CanvasModulate"
+	var tween = create_tween()
+	tween.tween_property(canvas, "color", Color(0,0,0,.7), 4.75)
+	tween.tween_callback(change_to_death)
+	
 	pass
+	
+func change_to_death():
+	get_tree().change_scene_to_file("res://death_screen.tscn")
 
 func _physics_process(delta: float) -> void:
 	if asleep:
