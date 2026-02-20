@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export var fuel_bar: ProgressBar
+@export var fuel_bar: Range
 @export var awake_bar: ProgressBar
 
 

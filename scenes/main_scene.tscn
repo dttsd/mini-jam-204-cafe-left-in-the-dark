@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://d3si6mgcuk4f2" path="res://scenes/creepy_arm.tscn" id="17_xdqt8"]
 [ext_resource type="PackedScene" uid="uid://ffu72d3ks15w" path="res://scenes/sleep_bar.tscn" id="18_bcnxi"]
 [ext_resource type="PackedScene" uid="uid://edymhyl225cs" path="res://pause_menu.tscn" id="19_k6f3i"]
+[ext_resource type="Texture2D" uid="uid://dusbglsitf3v2" path="res://assets/items/fuel_can.png" id="20_adb74"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qwutr"]
 shader = ExtResource("9_wr18j")
@@ -86,8 +87,9 @@ point_count = 5
 default_font = ExtResource("16_m35m6")
 default_font_size = 28
 
-[node name="MainScene" type="Node" unique_id=1984564942]
+[node name="MainScene" type="Node" unique_id=1984564942 node_paths=PackedStringArray("Score_Label")]
 script = ExtResource("1_bcnxi")
+Score_Label = NodePath("CanvasLayer/GUI/ScoreLabel")
 
 [node name="World" type="Node2D" parent="." unique_id=608759412]
 y_sort_enabled = true
@@ -282,6 +284,23 @@ theme = SubResource("Theme_u0ygc")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/GUI" unique_id=1946383014]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -29.5
+offset_top = -29.0
+offset_right = 29.5
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 6
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.44291076, 0.44291076, 0.44291073, 1)
+text = "score"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GUI" unique_id=1258231000]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 1
@@ -289,23 +308,28 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 4.0
-offset_top = -116.0
+offset_top = -93.0
 offset_right = 449.0
 grow_vertical = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GUI/HBoxContainer" unique_id=831968249]
 layout_mode = 2
 
-[node name="FuelBar" type="ProgressBar" parent="CanvasLayer/GUI/HBoxContainer/VBoxContainer" unique_id=208653394]
+[node name="FuelBar" type="TextureProgressBar" parent="CanvasLayer/GUI/HBoxContainer/VBoxContainer" unique_id=1236449599]
 custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 size_flags_vertical = 3
-value = 26.76
+value = 40.0
 fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("20_adb74")
+texture_progress = ExtResource("20_adb74")
+tint_under = Color(0.29219002, 0.29219005, 0.29219002, 1)
 
 [node name="Label" type="Label" parent="CanvasLayer/GUI/HBoxContainer/VBoxContainer" unique_id=350140762]
 layout_mode = 2
 size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.44313726, 0.44313726, 0.44313726, 1)
 text = "fuel"
 
 [node name="Label2" type="Label" parent="CanvasLayer/GUI/HBoxContainer" unique_id=2147234140]
@@ -325,11 +349,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 value = 100.0
-
-[node name="ScoreLabel" type="Label" parent="CanvasLayer/GUI/HBoxContainer" unique_id=1946383014]
-layout_mode = 2
-size_flags_vertical = 8
-text = "score"
 
 [node name="SleepBar" parent="CanvasLayer" unique_id=664515770 instance=ExtResource("18_bcnxi")]
 

@@ -9,7 +9,7 @@
 default_font = ExtResource("1_if853")
 default_font_size = 18
 
-[node name="death_screen" type="Control" unique_id=1345299950]
+[node name="death_screen" type="Control" unique_id=1345299950 node_paths=PackedStringArray("ScoreLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,6 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ex68u")
+ScoreLabel = NodePath("CanvasLayer/MarginContainer/HBoxContainer/ScoreTime")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1999590639]
 
@@ -98,14 +99,29 @@ theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 30
 
-[node name="Label" type="Label" parent="CanvasLayer/MarginContainer" unique_id=1570279764]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=1708990795]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="ScoreText" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=1570279764]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(1, 1, 1, 0.6156863)
 theme_override_font_sizes/font_size = 13
-text = "time left until salvation: [time]"
+text = "time survived:"
 horizontal_alignment = 1
 
+[node name="ScoreTime" type="RichTextLabel" parent="CanvasLayer/MarginContainer/HBoxContainer" unique_id=1280164725]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+bbcode_enabled = true
+text = "[time]"
+horizontal_alignment = 1
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/VBoxContainer2/BtnTryAgain" to="." method="_on_btn_try_again_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/VBoxContainer2/BtnMainMenu" to="." method="_on_btn_main_menu_pressed"]

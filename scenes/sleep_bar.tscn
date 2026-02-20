@@ -8,12 +8,18 @@
 [ext_resource type="Texture2D" uid="uid://du77q1meef3ve" path="res://assets/ui/eye-5-closed.png" id="6_pe0nn"]
 [ext_resource type="Texture2D" uid="uid://dv3bkx58oo76b" path="res://assets/ui/sleep-bar-base.png" id="7_rgg3o"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdn6u"]
+bg_color = Color(0.32026264, 0, 0.004672509, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yk7ms"]
+bg_color = Color(1, 1, 1, 1)
+
 [node name="SleepBar" type="CanvasLayer" unique_id=664515770]
 script = ExtResource("1_bfdo6")
 eye_states = Array[Texture2D]([ExtResource("2_nxd8j"), ExtResource("3_aotfy"), ExtResource("4_wa7uo"), ExtResource("5_0jty5"), ExtResource("6_pe0nn")])
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=166947053]
-modulate = Color(0.83137256, 0.20392157, 0.20392157, 1)
+modulate = Color(0.5338337, 0.10461026, 0.10733337, 1)
 layout_direction = 2
 anchors_preset = 5
 anchor_left = 0.5
@@ -24,6 +30,8 @@ offset_right = 147.0
 offset_bottom = 32.0
 grow_horizontal = 2
 size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_gdn6u")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yk7ms")
 value = 53.55
 show_percentage = false
 

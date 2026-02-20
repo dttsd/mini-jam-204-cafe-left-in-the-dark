@@ -219,8 +219,10 @@ func is_player_in_light():
 func handle_light_damage(delta: float):
 	if not is_player_in_light():
 		player_health -= darkness_damage * delta
+		Global.awakeness -= delta * 10
 	else:
 		player_health += darkness_damage * delta * 4
+		
 		
 	#print(str(player_health))
 
