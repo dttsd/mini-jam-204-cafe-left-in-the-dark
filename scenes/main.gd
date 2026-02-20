@@ -17,6 +17,8 @@ var score: int = 3:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	score = 0
+	Global.awakeness = 100
+	Global.van_fuel = 100
 	pass # Replace with function body.
 
 

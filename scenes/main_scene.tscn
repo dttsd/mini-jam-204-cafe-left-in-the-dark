@@ -267,7 +267,7 @@ position = Vector2(424, 233)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=393438066 node_paths=PackedStringArray("fuel_bar", "awake_bar")]
 script = ExtResource("15_2jcla")
-fuel_bar = NodePath("GUI/HBoxContainer/FuelBar")
+fuel_bar = NodePath("GUI/HBoxContainer/VBoxContainer/FuelBar")
 awake_bar = NodePath("GUI/HBoxContainer/AwakeBar")
 
 [node name="GUI" type="Control" parent="CanvasLayer" unique_id=1335974019]
@@ -288,30 +288,47 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -33.0
-offset_right = 445.0
+offset_left = 4.0
+offset_top = -116.0
+offset_right = 449.0
 grow_vertical = 0
 
-[node name="Label" type="Label" parent="CanvasLayer/GUI/HBoxContainer" unique_id=350140762]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GUI/HBoxContainer" unique_id=831968249]
 layout_mode = 2
+
+[node name="FuelBar" type="ProgressBar" parent="CanvasLayer/GUI/HBoxContainer/VBoxContainer" unique_id=208653394]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+size_flags_vertical = 3
+value = 26.76
+fill_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/GUI/HBoxContainer/VBoxContainer" unique_id=350140762]
+layout_mode = 2
+size_flags_vertical = 8
 text = "fuel"
 
-[node name="FuelBar" type="ProgressBar" parent="CanvasLayer/GUI/HBoxContainer" unique_id=208653394]
-layout_mode = 2
-size_flags_horizontal = 3
-value = 26.76
-
 [node name="Label2" type="Label" parent="CanvasLayer/GUI/HBoxContainer" unique_id=2147234140]
+visible = false
 layout_mode = 2
+size_flags_vertical = 8
 text = "awake"
 
+[node name="VSeparator" type="VSeparator" parent="CanvasLayer/GUI/HBoxContainer" unique_id=723524262]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_vertical = 8
+
 [node name="AwakeBar" type="ProgressBar" parent="CanvasLayer/GUI/HBoxContainer" unique_id=1806520644]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 8
 value = 100.0
 
 [node name="ScoreLabel" type="Label" parent="CanvasLayer/GUI/HBoxContainer" unique_id=1946383014]
 layout_mode = 2
+size_flags_vertical = 8
 text = "score"
 
 [node name="SleepBar" parent="CanvasLayer" unique_id=664515770 instance=ExtResource("18_bcnxi")]

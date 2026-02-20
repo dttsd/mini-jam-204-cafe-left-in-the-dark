@@ -40,7 +40,7 @@ func decrease_van_stats(delta: float):
 	if on_menu:
 		return
 	
-	Global.van_fuel -= van_fuel_consumption * delta
+	Global.van_fuel -= van_fuel_consumption * delta * 2
 	speed = fuel_curve_speed.sample(Global.van_fuel) * max_speed
 	
 	# turn engine sound off if below set speed

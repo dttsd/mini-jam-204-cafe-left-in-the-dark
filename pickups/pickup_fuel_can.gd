@@ -13,4 +13,4 @@ func _process(_delta: float) -> void:
 	pass
 
 func use():
-	Global.van_fuel += 50
+	Global.van_fuel += 30

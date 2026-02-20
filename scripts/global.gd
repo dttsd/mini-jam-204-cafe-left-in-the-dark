@@ -27,5 +27,5 @@ func _process(delta: float) -> void:
 	if van_fuel <= 0:
 		# make light shrink
 		pass
-	awakeness -= delta * 2
+	awakeness -= delta * 4
 	pass
